@@ -28,7 +28,7 @@ function ChatContent({ session }: { session: any }) {
   const deleteConversation = useDeleteConversation();
   
   // Get message usage data
-  const messageUsage = customer?.features?.messages;
+  const messageUsage = customer?.features?.messages ?? customer?.features?.['pro-messages'] ?? customer?.features?.['free-messages'];
   const remainingMessages = messageUsage ? (messageUsage.balance || 0) : 0;
   const hasMessages = remainingMessages > 0;
   const isCustomerLoading = !customer && !session; // Still loading customer data

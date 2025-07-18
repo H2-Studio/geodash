@@ -10,7 +10,7 @@ import { useCustomer } from '@/hooks/useAutumnCustomer';
 // Separate component that only renders when Autumn is available
 function UserCredits() {
   const { customer } = useCustomer();
-  const messageUsage = customer?.features?.messages;
+  const messageUsage = customer?.features?.messages ?? customer?.features?.['pro-messages'] ?? customer?.features?.['free-messages'];
   const remainingMessages = messageUsage ? (messageUsage.balance || 0) : 0;
   
   return (

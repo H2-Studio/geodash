@@ -27,7 +27,7 @@ function BrandMonitorContent({ session }: { session: any }) {
   const deleteAnalysis = useDeleteBrandAnalysis();
   
   // Get credits from customer data
-  const messageUsage = customer?.features?.messages;
+  const messageUsage = customer?.features?.messages ?? customer?.features?.['pro-messages'] ?? customer?.features?.['free-messages'];
   const credits = messageUsage ? (messageUsage.balance || 0) : 0;
 
   useEffect(() => {
