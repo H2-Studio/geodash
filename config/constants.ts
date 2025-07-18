@@ -4,7 +4,7 @@
 // ============================================
 // Feature IDs and Identifiers
 // ============================================
-export const FEATURE_ID_MESSAGES = 'messages';
+export const FEATURE_ID_MESSAGES = 'free-messages'; //messags - à harmonniser
 
 // ============================================
 // User Roles
