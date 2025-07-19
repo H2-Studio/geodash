@@ -137,9 +137,9 @@ export function assignUrlToCompetitor(competitorName: string): string | undefine
 }
 
 export function detectServiceType(company: Company): string {
-  const desc = (company.description || '').toLowerCase();
-  const content = (company.scrapedData?.mainContent || '').toLowerCase();
-  const companyName = (company.name || '').toLowerCase();
+  const desc = (company?.description || '').toLowerCase();
+  const content = (company?.scrapedData?.mainContent || '').toLowerCase();
+  const companyName = (company?.name || '').toLowerCase();
   
   // Check for specific industries first
   if (desc.includes('beverage') || desc.includes('drink') || desc.includes('cola') || desc.includes('soda') ||

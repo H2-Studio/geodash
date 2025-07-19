@@ -200,7 +200,7 @@ export async function generatePromptsForCompany(company: Company, competitors: s
   const scrapedData = company.scrapedData;
   const keywords = scrapedData?.keywords || [];
   const mainProducts = scrapedData?.mainProducts || [];
-  const description = scrapedData?.description || company.description || '';
+  const description = scrapedData?.description || company?.description || '';
   
   // Debug log to see what data we're working with
   console.log('Generating prompts for:', {

@@ -36,7 +36,8 @@ export type BrandMonitorAction =
   | { type: 'SET_NEW_COMPETITOR'; payload: { name?: string; url?: string } }
   | { type: 'RESET_STATE' }
   | { type: 'SCRAPE_SUCCESS'; payload: Company }
-  | { type: 'ANALYSIS_COMPLETE'; payload: Analysis };
+  | { type: 'ANALYSIS_COMPLETE'; payload: Analysis }
+  | { type: 'SET_DYNAMIC_PROMPTS'; payload: string[] };
 
 // State Interfaces
 export interface IdentifiedCompetitor {
@@ -155,6 +156,9 @@ export interface BrandMonitorState {
   newPromptText: string;
   newCompetitorName: string;
   newCompetitorUrl: string;
+
+  // Dynamic prompts
+  dynamicPrompts: string[];
 }
 
 // Initial State
@@ -195,7 +199,8 @@ export const initialBrandMonitorState: BrandMonitorState = {
   showAddCompetitorModal: false,
   newPromptText: '',
   newCompetitorName: '',
-  newCompetitorUrl: ''
+  newCompetitorUrl: '',
+  dynamicPrompts: [],
 };
 
 // Reducer
@@ -358,6 +363,12 @@ export function brandMonitorReducer(
         ...state,
         analysis: action.payload,
         analyzing: false
+      };
+
+    case 'SET_DYNAMIC_PROMPTS':
+      return {
+         ...state,
+        dynamicPrompts: action.payload
       };
       
     default:
