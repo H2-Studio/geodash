@@ -8,28 +8,27 @@ export async function POST(req: NextRequest) {
     await req.json();
 
   const prompt = `
-  Generate 4 concrete, natural GEO prompts in English for a Brand Monitor AI to analyze the online presence and competition of the following company:
-  
-  - Name: ${companyName}
-  - Sector: ${sector}
-  - Description: ${description}
-  - Main products/services: ${products}
-  - Competitors: ${(competitors || []).join(", ")}
-  
-  Each question should sound like a real user query, similar to these examples:
-  - What are the main competitors of [Brand]?
-  - What do users think of [Brand]?
-  - What are the best alternatives to [Brand]?
-  - How does [Brand] compare to [Competitor] for B2B usage?
-  - What new features has [Brand] announced recently?
-  - Is [Brand] available internationally?
-  - Which [sector] startups are the most innovative in 2025?
-  - How do I open an account at [Brand]?
-  - What are the latest news about [Brand]?
-  - What products does [Brand] offer?
-  
-  Questions should be concise, in a natural tone, and directly related to the brand, its products/services, and its competitors. Only output the list of questions in English.
-  `;
+    Generate 4 concrete, natural GEO prompts in English for a Brand Monitor AI to analyze the online presence and competition of the following company:
+    
+    - Name: ${companyName}
+    - Sector: ${sector}
+    - Description: ${description}
+    - Main products/services: ${products}
+    - Competitors: ${(competitors || []).join(", ")}
+    
+    Each question should sound like a real user query, but **do NOT mention the company name, brand, or competitors directly in the prompt**. Instead, use generic references (e.g. "this company", "this provider", or "their products/services"). Example:
+    
+    - What do users think of this company’s main product?
+    - What are the alternatives to this provider for B2B?
+    - How do the latest features of this platform compare to competitors?
+    - Is this service available internationally?
+    - Which startups in the [sector] are most innovative in 2025?
+    - How do I open an account at this provider?
+    - What are the latest news about this company?
+    - What products does this company offer?
+    
+    Questions should be concise, natural, and related to the company, its products/services, and competitors, but **should NOT directly use the brand/company or competitor names**. Only output the list of questions in English.
+    `;
 
   const gptResponse = await openai.chat.completions.create({
     model: "gpt-4o",
