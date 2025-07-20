@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface AddCompetitorModalProps {
   isOpen: boolean;
@@ -17,17 +17,17 @@ export function AddCompetitorModal({
   onNameChange,
   onUrlChange,
   onAdd,
-  onClose
+  onClose,
 }: AddCompetitorModalProps) {
   if (!isOpen) return null;
-  
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && competitorName.trim()) {
+    if (e.key === "Enter" && competitorName.trim()) {
       e.preventDefault();
       onAdd();
     }
   };
-  
+
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 animate-fade-in">
       <div className="bg-white rounded-xl shadow-xl max-w-lg w-full mx-4 animate-fade-in">

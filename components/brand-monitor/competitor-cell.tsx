@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
-import { ExternalLink } from 'lucide-react';
+import React from "react";
+import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 
 interface CompetitorCellProps {
   name: string;
@@ -17,13 +17,15 @@ export const CompetitorCell: React.FC<CompetitorCellProps> = ({
   isOwn = false,
   description,
   favicon,
-  url
+  url,
 }) => {
   const [faviconError, setFaviconError] = React.useState(false);
-  
+
   // Generate favicon URL if not provided
-  const faviconUrl = favicon || (url ? `https://www.google.com/s2/favicons?domain=${url}&sz=64` : null);
-  
+  const faviconUrl =
+    favicon ||
+    (url ? `https://www.google.com/s2/favicons?domain=${url}&sz=64` : null);
+
   return (
     <div className="flex items-center gap-2 p-3 hover:bg-gray-50">
       <div className="w-6 h-6 flex items-center justify-center rounded overflow-hidden flex-shrink-0">
@@ -47,25 +49,25 @@ export const CompetitorCell: React.FC<CompetitorCellProps> = ({
       <div className="flex-1">
         <div className="flex items-center gap-1.5">
           {url && !isOwn ? (
-            <a 
-              href={url.startsWith('http') ? url : `https://${url}`}
+            <a
+              href={url.startsWith("http") ? url : `https://${url}`}
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-sm font-medium hover:underline ${isOwn ? 'text-blue-600' : 'text-gray-900 hover:text-blue-600'} flex items-center gap-1`}
+              className={`text-sm font-medium hover:underline ${isOwn ? "text-blue-600" : "text-gray-900 hover:text-blue-600"} flex items-center gap-1`}
               onClick={(e) => e.stopPropagation()}
             >
               {name}
               <ExternalLink className="w-3.5 h-3.5 text-gray-400" />
             </a>
           ) : (
-            <h3 className={`text-sm font-medium ${isOwn ? 'text-blue-600' : 'text-gray-900'}`}>
+            <h3
+              className={`text-sm font-medium ${isOwn ? "text-blue-600" : "text-gray-900"}`}
+            >
               {name}
             </h3>
           )}
         </div>
-        {description && (
-          <p className="text-sm text-gray-500">{description}</p>
-        )}
+        {description && <p className="text-sm text-gray-500">{description}</p>}
       </div>
     </div>
   );

@@ -147,7 +147,8 @@ export async function performAnalysis({
     hasOpenAI: !!process.env.OPENAI_API_KEY,
     hasAnthropic: !!process.env.ANTHROPIC_API_KEY,
     hasGoogle: !!process.env.GOOGLE_GENERATIVE_AI_API_KEY,
-    hasPerplexity: !!process.env.PERPLEXITY_API_KEY
+    hasPerplexity: !!process.env.PERPLEXITY_API_KEY,
+    hasXai: !!process.env.XAI_API_KEY
   });
   console.log('Web search enabled:', useWebSearch);
   console.log('Number of prompts:', analysisPrompts.length);
