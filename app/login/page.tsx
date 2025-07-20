@@ -60,7 +60,7 @@ function LoginForm() {
         <div className="relative z-10 max-w-md text-white">
           <h1 className="text-4xl font-bold mb-4">Welcome back!</h1>
           <p className="text-lg opacity-90">
-            Sign in to continue building amazing things with our powerful API.
+            Sign in to access your brand visibility dashboard and monitor your AI reputation with GEODash.
           </p>
         </div>
         {/* Decorative elements */}
