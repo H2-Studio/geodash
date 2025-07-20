@@ -131,10 +131,11 @@ export function ProviderComparisonMatrix({ data, brandName, competitors }: Provi
   const getBackgroundStyle = (score: number) => {
     const opacity = Math.pow(score / 100, 0.5);
     return {
-      backgroundColor: `rgba(251, 146, 60, ${opacity})`,
-      border: score > 0 ? '1px solid rgb(251, 146, 60)' : undefined
+      backgroundColor: `rgba(37, 99, 235, ${opacity})`, // blue-600
+      border: score > 0 ? '1px solid rgb(37, 99, 235)' : undefined // blue-600
     };
   };
+  
 
   // Handle sorting
   const handleSort = (column: string) => {
@@ -243,7 +244,7 @@ export function ProviderComparisonMatrix({ data, brandName, competitors }: Provi
                       }`}
                       style={getBackgroundStyle(score)}
                     >
-                      <span className="text-orange-900 font-medium text-xs">
+                      <span className="text-blue-900 font-medium text-xs">
                         {score}%
                       </span>
                     </td>

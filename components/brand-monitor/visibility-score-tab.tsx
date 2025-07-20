@@ -34,7 +34,7 @@ export function VisibilityScoreTab({
             </div>
             {/* Visibility Score in top right */}
             <div className="text-right">
-              <p className="text-3xl font-bold text-orange-600">{brandData.visibilityScore}%</p>
+              <p className="text-3xl font-bold text-blue-600">{brandData.visibilityScore}%</p>
               <p className="text-xs text-gray-500 mt-1">Overall Score</p>
             </div>
           </div>
@@ -152,14 +152,14 @@ export function VisibilityScoreTab({
                           />
                         ) : null}
                         <div className={`w-full h-full ${
-                          competitor.isOwn ? 'bg-orange-500' : 'bg-gray-300'
+                          competitor.isOwn ? 'bg-blue-500' : 'bg-gray-300'
                         } flex items-center justify-center text-white text-[8px] font-bold rounded`} 
                         style={{ display: faviconUrl ? 'none' : 'flex' }}>
                           {competitor.name.charAt(0)}
                         </div>
                       </div>
                       <span className={`text-sm truncate ${
-                        competitor.isOwn ? 'font-semibold text-orange-600' : 'text-gray-700'
+                        competitor.isOwn ? 'font-semibold text-blue-600' : 'text-gray-700'
                       }`}>
                         {competitor.name}
                       </span>

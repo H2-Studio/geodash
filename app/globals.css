@@ -137,20 +137,27 @@
   box-shadow: inset 0px 1px 1px 0px #18181b, 0px 1px 2px 0px rgba(24, 24, 27, 30%);
 }
 
-.btn-firecrawl-orange {
-  background-color: #f97316;
+.btn-firecrawl-blue {
+  background-color: #2563eb; /* Tailwind blue-600 */
   color: white;
-  box-shadow: inset 0px -2px 0px 0px #c2410c, 0px 1px 6px 0px rgba(234, 88, 12, 58%);
+  box-shadow:
+    inset 0px -2px 0px 0px #1d4ed8,        /* blue-700 */
+    0px 1px 6px 0px rgba(37, 99, 235, 0.58); /* blue-600, 58% */
 }
-.btn-firecrawl-orange:hover {
-  background-color: #ea580c;
+.btn-firecrawl-blue:hover {
+  background-color: #1d4ed8; /* blue-700 */
   transform: translateY(1px) scale(0.98);
-  box-shadow: inset 0px -1px 0px 0px #c2410c, 0px 1px 3px 0px rgba(234, 88, 12, 40%);
+  box-shadow:
+    inset 0px -1px 0px 0px #1d4ed8,
+    0px 1px 3px 0px rgba(37, 99, 235, 0.40);
 }
-.btn-firecrawl-orange:active {
+.btn-firecrawl-blue:active {
   transform: translateY(2px) scale(0.97);
-  box-shadow: inset 0px 1px 1px 0px #c2410c, 0px 1px 2px 0px rgba(234, 88, 12, 30%);
+  box-shadow:
+    inset 0px 1px 1px 0px #1d4ed8,
+    0px 1px 2px 0px rgba(37, 99, 235, 0.30);
 }
+
 
 .btn-firecrawl-outline {
   background-color: transparent;
@@ -348,21 +355,22 @@
 }
 
 .autumn-pricing-table button[data-primary="true"] {
-  background-color: #f97316 !important;
+  background-color: #2563eb !important; /* blue-600 */
   color: white !important;
-  box-shadow: inset 0px -2px 0px 0px #c2410c, 0px 1px 6px 0px rgba(234, 88, 12, 58%) !important;
+  box-shadow: inset 0px -2px 0px 0px #1d4ed8, 0px 1px 6px 0px rgba(37, 99, 235, 58%) !important;
 }
 
 .autumn-pricing-table button[data-primary="true"]:hover {
-  background-color: #ea580c !important;
+  background-color: #1d4ed8 !important; /* blue-700 */
   transform: translateY(1px) scale(0.98) !important;
-  box-shadow: inset 0px -1px 0px 0px #c2410c, 0px 1px 3px 0px rgba(234, 88, 12, 40%) !important;
+  box-shadow: inset 0px -1px 0px 0px #1d4ed8, 0px 1px 3px 0px rgba(37, 99, 235, 40%) !important;
 }
 
 .autumn-pricing-table button[data-primary="true"]:active {
   transform: translateY(2px) scale(0.97) !important;
-  box-shadow: inset 0px 1px 1px 0px #c2410c, 0px 1px 2px 0px rgba(234, 88, 12, 30%) !important;
+  box-shadow: inset 0px 1px 1px 0px #1d4ed8, 0px 1px 2px 0px rgba(37, 99, 235, 30%) !important;
 }
+
 
 .autumn-pricing-table button:not([data-primary="true"]) {
   background-color: #18181b !important;

@@ -89,7 +89,7 @@ export function Navbar() {
               <>
                 <Link
                   href="/dashboard"
-                  className="btn-firecrawl-orange inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-8 px-3"
+                  className="btn-firecrawl-blue inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-8 px-3"
                 >
                   Dashboard
                 </Link>
@@ -111,7 +111,7 @@ export function Navbar() {
                 </Link>
                 <Link 
                   href="/register"
-                  className="btn-firecrawl-orange inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-8 px-3"
+                  className="btn-firecrawl-blue inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-8 px-3"
                 >
                   Register
                 </Link>

@@ -103,7 +103,7 @@ export function PublicPricingTable() {
         </div>
 
         {/* Pro - Featured */}
-        <div className="bg-white p-8 rounded-[20px] border-2 border-orange-500 relative">
+        <div className="bg-white p-8 rounded-[20px] border-2 border-blue-500 relative">
           <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-black text-white px-4 py-1 rounded-full text-sm font-medium">
             Most Popular
           </div>
@@ -135,7 +135,7 @@ export function PublicPricingTable() {
           </ul>
           <Link
             href="/register"
-            className="btn-firecrawl-orange w-full inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-10 px-4"
+            className="btn-firecrawl-blue w-full inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-10 px-4"
           >
             Start free trial
           </Link>
@@ -192,7 +192,7 @@ export function PublicPricingTable() {
           <div
             key={product.id}
             className={`bg-white p-8 rounded-[20px] border ${
-              isRecommended ? 'border-2 border-orange-500 relative' : 'border-zinc-200'
+              isRecommended ? 'border-2 border-blue-500 relative' : 'border-zinc-200'
             }`}
           >
             {isRecommended && (
@@ -227,7 +227,7 @@ export function PublicPricingTable() {
             <Link
               href="/register"
               className={`${
-                isRecommended ? 'btn-firecrawl-orange' : 'btn-firecrawl-outline'
+                isRecommended ? 'btn-firecrawl-blue' : 'btn-firecrawl-outline'
               } w-full inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-10 px-4`}
             >
               {product.properties?.is_free ? 'Start free' : 'Get started'}

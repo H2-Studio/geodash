@@ -36,8 +36,8 @@ export default function ForgotPasswordPage() {
     return (
       <div className="min-h-screen flex">
         {/* Left side - Orange gradient */}
-        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 p-12 items-center justify-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-400/90 via-orange-500/90 to-orange-600/90" />
+        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-400 via-orange-500 to-blue-600 p-12 items-center justify-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-400/90 via-orange-500/90 to-blue-600/90" />
           <div className="relative z-10 max-w-md text-white">
             <h1 className="text-4xl font-bold mb-4">Check your inbox!</h1>
             <p className="text-lg opacity-90">
@@ -45,8 +45,8 @@ export default function ForgotPasswordPage() {
             </p>
           </div>
           {/* Decorative elements */}
-          <div className="absolute top-20 right-20 w-64 h-64 bg-orange-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" />
-          <div className="absolute bottom-20 left-20 w-64 h-64 bg-orange-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000" />
+          <div className="absolute top-20 right-20 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" />
+          <div className="absolute bottom-20 left-20 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000" />
         </div>
 
         {/* Right side - Success message */}
@@ -70,7 +70,7 @@ export default function ForgotPasswordPage() {
               </p>
               <Link 
                 href="/login" 
-                className="mt-6 inline-flex items-center text-sm text-orange-600 hover:text-orange-500"
+                className="mt-6 inline-flex items-center text-sm text-blue-600 hover:text-blue-500"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to login
@@ -85,8 +85,8 @@ export default function ForgotPasswordPage() {
   return (
     <div className="min-h-screen flex">
       {/* Left side - Orange gradient */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 p-12 items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-400/90 via-orange-500/90 to-orange-600/90" />
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-400 via-orange-500 to-blue-600 p-12 items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-400/90 via-orange-500/90 to-blue-600/90" />
         <div className="relative z-10 max-w-md text-white">
           <h1 className="text-4xl font-bold mb-4">Forgot your password?</h1>
           <p className="text-lg opacity-90">
@@ -94,8 +94,8 @@ export default function ForgotPasswordPage() {
           </p>
         </div>
         {/* Decorative elements */}
-        <div className="absolute top-20 right-20 w-64 h-64 bg-orange-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" />
-        <div className="absolute bottom-20 left-20 w-64 h-64 bg-orange-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000" />
+        <div className="absolute top-20 right-20 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" />
+        <div className="absolute bottom-20 left-20 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000" />
       </div>
 
       {/* Right side - Form */}
@@ -132,7 +132,7 @@ export default function ForgotPasswordPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 placeholder="Enter your email"
               />
             </div>
@@ -154,7 +154,7 @@ export default function ForgotPasswordPage() {
             </div>
 
             <div className="text-center">
-              <Link href="/login" className="text-sm text-orange-600 hover:text-orange-500 inline-flex items-center">
+              <Link href="/login" className="text-sm text-blue-600 hover:text-blue-500 inline-flex items-center">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to login
               </Link>

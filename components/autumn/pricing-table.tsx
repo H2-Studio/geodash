@@ -354,7 +354,7 @@ export const PricingCardButton = React.forwardRef<
     <button
       className={cn(
         "w-full py-3 px-4 group overflow-hidden relative transition-all duration-300 border rounded-[10px] inline-flex items-center justify-center whitespace-nowrap text-sm font-medium disabled:pointer-events-none disabled:opacity-50",
-        recommended ? "btn-firecrawl-orange" : "btn-firecrawl-default",
+        recommended ? "btn-firecrawl-blue" : "btn-firecrawl-default",
         className
       )}
       {...props}

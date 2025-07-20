@@ -70,8 +70,8 @@ function BrandMonitorContent({ session }: { session: any }) {
             <div className="flex items-center justify-between">
               <div className="text-center flex-1">
                 <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-2 animate-fade-in-up">
-                  <span className="block text-zinc-900">FireGEO Monitor</span>
-                  <span className="block bg-gradient-to-r from-red-600 to-yellow-500 bg-clip-text text-transparent">
+                  <span className="block text-zinc-900">GEODash</span>
+                  <span className="block bg-gradient-to-r from-blue-700 to-blue-400 bg-clip-text text-transparent">
                     AI Brand Visibility Platform
                   </span>
                 </h1>
@@ -105,7 +105,7 @@ function BrandMonitorContent({ session }: { session: any }) {
           <div className="p-4 border-b">
             <Button
               onClick={handleNewAnalysis}
-              className="w-full btn-firecrawl-orange"
+              className="w-full btn-firecrawl-blue"
             >
               <Plus className="w-4 h-4 mr-2" />
               New Analysis

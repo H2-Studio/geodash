@@ -143,7 +143,7 @@ export function AnalysisProgressSection({
                 )}
               </div>
               {scrapingCompetitors && !analyzing && (
-                <CardDescription className="mt-2 flex items-center justify-center gap-2 text-orange-600">
+                <CardDescription className="mt-2 flex items-center justify-center gap-2 text-blue-600">
                   <Loader2 className="w-4 h-4 animate-spin" />
                   <span>Validating competitor data in background...</span>
                 </CardDescription>
@@ -152,14 +152,14 @@ export function AnalysisProgressSection({
                 <div className="mt-4">
                   <div className="flex items-center justify-between mb-2">
                     <CardDescription className="flex items-center gap-2">
-                      <Loader2 className="w-4 h-4 animate-spin text-orange-500" />
+                      <Loader2 className="w-4 h-4 animate-spin text-blue-500" />
                       <span>{analysisProgress.message}</span>
                     </CardDescription>
                     <span className="text-sm text-gray-500">{analysisProgress.progress}%</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                     <div 
-                      className="bg-orange-500 h-2 rounded-full transition-all duration-500 ease-out"
+                      className="bg-blue-500 h-2 rounded-full transition-all duration-500 ease-out"
                       style={{ width: `${analysisProgress.progress}%` }}
                     />
                   </div>
@@ -221,7 +221,7 @@ export function AnalysisProgressSection({
                                       <div className="w-4 h-4 rounded-full border border-gray-300" />
                                     )}
                                     {status === 'running' && (
-                                      <Loader2 className="w-4 h-4 animate-spin text-orange-500" />
+                                      <Loader2 className="w-4 h-4 animate-spin text-blue-500" />
                                     )}
                                     {status === 'completed' && (
                                       <CheckIcon className="w-4 h-4 text-green-500" />
@@ -262,7 +262,7 @@ export function AnalysisProgressSection({
                 <button
                   onClick={onStartAnalysis}
                   disabled={analyzing}
-                  className="h-10 px-6 rounded-[10px] text-sm font-medium flex items-center transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 bg-orange-500 text-white hover:bg-orange-600 [box-shadow:inset_0px_-2.108433723449707px_0px_0px_#c2410c,_0px_1.2048193216323853px_6.325301647186279px_0px_rgba(234,_88,_12,_58%)] hover:translate-y-[1px] hover:scale-[0.98] hover:[box-shadow:inset_0px_-1px_0px_0px_#c2410c,_0px_1px_3px_0px_rgba(234,_88,_12,_40%)] active:translate-y-[2px] active:scale-[0.97] active:[box-shadow:inset_0px_1px_1px_0px_#c2410c,_0px_1px_2px_0px_rgba(234,_88,_12,_30%)] disabled:shadow-none disabled:hover:translate-y-0 disabled:hover:scale-100"
+                  className="h-10 px-4 rounded-[10px] text-sm font-medium flex items-center gap-1 transition-all duration-200 bg-blue-500 text-white hover:bg-blue-600 [box-shadow:inset_0px_-2.108433723449707px_0px_0px_#1d4ed8,_0px_1.2048193216323853px_6.325301647186279px_0px_rgba(37,_99,_235,_58%)] hover:translate-y-[1px] hover:scale-[0.98] hover:[box-shadow:inset_0px_-1px_0px_0px_#1d4ed8,_0px_1px_3px_0px_rgba(37,_99,_235,_40%)] active:translate-y-[2px] active:scale-[0.97] active:[box-shadow:inset_0px_1px_1px_0px_#1d4ed8,_0px_1px_2px_0px_rgba(37,_99,_235,_30%)]"
                 >
                   {analyzing ? (
                     <>

@@ -89,7 +89,7 @@ function ChatContent({ session }: { session: any }) {
         <div className="p-4 border-b">
           <Button
             onClick={handleNewConversation}
-            className="w-full btn-firecrawl-orange"
+            className="w-full btn-firecrawl-blue"
           >
             <Plus className="w-4 h-4 mr-2" />
             New Chat
@@ -140,7 +140,7 @@ function ChatContent({ session }: { session: any }) {
         <div className="p-4 border-t bg-gray-50">
           <div className="text-sm text-gray-600">
             <p>Messages remaining:</p>
-            <p className="text-2xl font-bold text-orange-600">{remainingMessages}</p>
+            <p className="text-2xl font-bold text-blue-600">{remainingMessages}</p>
           </div>
         </div>
       </div>
@@ -180,14 +180,14 @@ function ChatContent({ session }: { session: any }) {
                 <p className="text-gray-600 mb-4">
                   This is a demonstration of the credit-based messaging system. Each message consumes credits from your account balance.
                 </p>
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-4">
-                  <p className="text-sm text-orange-800">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                  <p className="text-sm text-blue-800">
                     You currently have <span className="font-bold">{remainingMessages}</span> message credits available.
                   </p>
                 </div>
                 <Button
                   onClick={() => router.push('/plans')}
-                  className="btn-firecrawl-orange"
+                  className="btn-firecrawl-blue"
                 >
                   Get More Credits
                 </Button>
@@ -203,13 +203,13 @@ function ChatContent({ session }: { session: any }) {
                   <div
                     className={`max-w-[70%] rounded-lg px-4 py-2 ${
                       message.role === 'user'
-                        ? 'bg-orange-500 text-white'
+                        ? 'bg-blue-500 text-white'
                         : 'bg-gray-100 text-gray-900'
                     }`}
                   >
                     <p className="whitespace-pre-wrap">{message.content}</p>
                     <p className={`text-xs mt-1 ${
-                      message.role === 'user' ? 'text-orange-100' : 'text-gray-500'
+                      message.role === 'user' ? 'text-blue-100' : 'text-gray-500'
                     }`}>
                       {format(new Date(message.createdAt), 'h:mm a')}
                     </p>
@@ -256,12 +256,12 @@ function ChatContent({ session }: { session: any }) {
               onChange={(e) => setInput(e.target.value)}
               placeholder={hasMessages ? "Type your message..." : "No messages available"}
               disabled={!hasMessages || sendMessage.isPending}
-              className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:bg-gray-100 disabled:text-gray-500"
+              className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-500"
             />
             <Button
               type="submit"
               disabled={!hasMessages || !input.trim() || sendMessage.isPending}
-              className="btn-firecrawl-orange"
+              className="btn-firecrawl-blue"
             >
               <Send className="w-4 h-4" />
             </Button>

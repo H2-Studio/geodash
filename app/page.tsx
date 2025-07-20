@@ -19,8 +19,8 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl lg:text-7xl font-bold tracking-tight mb-8 animate-fade-in-up">
-              <span className="block text-zinc-900">FireGEO Monitor</span>
-              <span className="block bg-gradient-to-r from-red-600 to-yellow-500 bg-clip-text text-transparent">
+              <span className="block text-zinc-900">GEODash</span>
+              <span className="block bg-gradient-to-r from-blue-700 to-blue-400 bg-clip-text text-transparent">
                 AI Brand Visibility Platform
               </span>
             </h1>
@@ -30,7 +30,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
               <Link
                 href="/brand-monitor"
-                className="btn-firecrawl-orange inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[10px] text-base font-medium transition-all duration-200 h-12 px-8"
+                className="btn-firecrawl-blue inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[10px] text-base font-medium transition-all duration-200 h-12 px-8"
               >
                 Start Brand Analysis
               </Link>
@@ -121,8 +121,8 @@ export default function Home() {
             </div>
 
             {/* Pro - Featured */}
-            <div className="bg-white p-8 rounded-[20px] border-2 border-orange-500 relative animate-fade-in-up animation-delay-600 hover:scale-105 transition-all duration-200">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+            <div className="bg-white p-8 rounded-[20px] border-2 border-blue-500 relative animate-fade-in-up animation-delay-600 hover:scale-105 transition-all duration-200">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">
                 Most Popular
               </div>
               <h3 className="text-2xl font-bold mb-2">Pro</h3>
@@ -153,7 +153,7 @@ export default function Home() {
               </ul>
               <Link
                 href="/register"
-                className="btn-firecrawl-orange w-full inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-10 px-4"
+                className="btn-firecrawl-blue w-full inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-10 px-4"
               >
                 Start free trial
               </Link>
@@ -196,7 +196,7 @@ export default function Home() {
             </div>
 
             <div className="text-center mt-12">
-              <Link href="/plans" className="text-orange-600 hover:text-orange-700 font-medium">
+              <Link href="/plans" className="text-blue-600 hover:text-blue-700 font-medium">
                 View detailed pricing →
               </Link>
             </div>
@@ -208,11 +208,11 @@ export default function Home() {
       {/* CTA Section 1 */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-[30px] p-16 text-center">
+          <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-[30px] p-16 text-center">
             <h2 className="text-4xl font-bold text-white mb-6">
               See How AI Models Rank Your Brand
             </h2>
-            <p className="text-xl text-orange-100 mb-8">
+            <p className="text-xl text-blue-100 mb-8">
               Monitor your brand visibility across ChatGPT, Claude, Perplexity and more
             </p>
             <Link
@@ -234,7 +234,7 @@ export default function Home() {
               Frequently asked questions
             </h2>
             <p className="text-xl text-zinc-600 animate-fade-in-up animation-delay-200">
-              Everything you need to know about FireGEO Monitor
+              Everything you need to know about GEODash
             </p>
           </div>
 
@@ -246,7 +246,7 @@ export default function Home() {
                 className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-gray-100 transition-colors"
               >
                 <h3 className="text-lg font-semibold text-zinc-900">
-                  How does FireGEO Monitor work?
+                  How does GEODash work?
                 </h3>
                 <svg
                   className={`w-5 h-5 text-zinc-500 transition-transform ${openFaq === 0 ? 'rotate-180' : ''}`}
@@ -260,7 +260,7 @@ export default function Home() {
               {openFaq === 0 && (
                 <div className="px-6 py-6">
                   <p className="text-zinc-600 leading-relaxed">
-                    FireGEO Monitor analyzes your brand's visibility across major AI platforms like ChatGPT, Claude, and Perplexity. Simply enter your website URL, and we'll show you how AI models rank your brand against competitors, what prompts trigger your appearance, and provide actionable insights to improve your AI visibility.
+                    GEODash analyzes your brand's visibility across major AI platforms like ChatGPT, Claude, and Perplexity. Simply enter your website URL, and we'll show you how AI models rank your brand against competitors, what prompts trigger your appearance, and provide actionable insights to improve your AI visibility.
                   </p>
                 </div>
               )}
@@ -389,7 +389,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/brand-monitor"
-              className="btn-firecrawl-orange inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-base font-medium transition-all duration-200 h-12 px-8"
+              className="btn-firecrawl-blue inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-base font-medium transition-all duration-200 h-12 px-8"
             >
               Analyze Your Brand
             </Link>

@@ -29,8 +29,8 @@ export function UrlInputSection({
                 urlValid === false 
                   ? 'border-red-300 focus:ring-red-500 focus:border-transparent' 
                   : urlValid === true 
-                  ? 'border-orange-300 focus:ring-orange-500 focus:border-transparent'
-                  : 'border-gray-300 focus:ring-orange-500 focus:border-transparent'
+                  ? 'border-blue-300 focus:ring-blue-500 focus:border-transparent'
+                  : 'border-gray-300 focus:ring-blue-500 focus:border-transparent'
               }`}
               placeholder="Enter your website URL (e.g., example.com)"
               value={url}
