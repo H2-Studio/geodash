@@ -6,6 +6,7 @@ import { useSession, signOut } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useCustomer } from '@/hooks/useAutumnCustomer';
+import { BrandLogo } from './ui/BrandLogo';
 
 // Separate component that only renders when Autumn is available
 function UserCredits() {
@@ -47,25 +48,19 @@ export function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <Image
-                src="/firecrawl-logo-with-fire.webp"
-                alt="Firecrawl"
-                width={120}
-                height={25}
-                priority
-              />
+              <BrandLogo />
             </Link>
           </div>
 
           <div className="flex items-center space-x-4">
             {session && (
               <>
-                <Link
+                {/* <Link
                   href="/chat"
                   className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
                 >
                   Basic Chat
-                </Link>
+                </Link> */}
                 <Link
                   href="/brand-monitor"
                   className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"

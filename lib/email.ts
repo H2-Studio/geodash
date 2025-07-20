@@ -26,7 +26,7 @@ export const sendEmail = async ({
 
   try {
     const data = await resend.emails.send({
-      from: process.env.EMAIL_FROM || 'SaaS Starter <onboarding@resend.dev>',
+      from: process.env.EMAIL_FROM || 'GEODash Team <onboarding@geodash.ai>',
       to,
       subject,
       text,

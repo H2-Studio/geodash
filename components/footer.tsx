@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { BrandLogo } from "./ui/BrandLogo";
 
 export function Footer() {
   return (
@@ -9,15 +10,10 @@ export function Footer() {
           {/* Logo and description */}
           <div className="col-span-1 md:col-span-2">
             <div className="mb-4">
-              <Image
-                src="/firecrawl-logo-with-fire.webp"
-                alt="Firecrawl"
-                width={120}
-                height={25}
-              />
+              <BrandLogo />
             </div>
             <p className="text-sm mb-4">
-              Turn websites into structured data. Built for AI apps and LLMs.
+              Monitor and optimize your brand’s visibility in AI and LLMs. 
             </p>
             <div className="flex space-x-4">
               <a
@@ -111,7 +107,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-zinc-200">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm">
-              © {new Date().getFullYear()} Firecrawl. All rights reserved.
+              © {new Date().getFullYear()} GEODash. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-sm hover:text-zinc-900 transition-colors">

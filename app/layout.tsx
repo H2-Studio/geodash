@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SaaS Starter",
-  description: "Next.js SaaS Starter with Better Auth",
+  title: "GEODash – Brand Visibility for AI and LLMs",
+  description: "Monitor your brand’s visibility across AI models and LLMs with GEODash.",
 };
 
 export default function RootLayout({
