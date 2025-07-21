@@ -10,22 +10,24 @@ import { Button } from '@/components/ui/button';
 import { format } from 'date-fns';
 import { useSession } from '@/lib/auth-client';
 import { ConfirmationDialog } from '@/components/ui/confirmation-dialog';
+import { useTranslations } from 'next-intl';
 
 // Separate component that uses Autumn hooks
 function BrandMonitorContent({ session }: { session: any }) {
   const router = useRouter();
+  const t = useTranslations('brandMonitor');
   const { customer, isLoading, error } = useCustomer();
   const refreshCustomer = useRefreshCustomer();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedAnalysisId, setSelectedAnalysisId] = useState<string | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [analysisToDelete, setAnalysisToDelete] = useState<string | null>(null);
-  
+
   // Queries and mutations
   const { data: analyses, isLoading: analysesLoading } = useBrandAnalyses();
   const { data: currentAnalysis } = useBrandAnalysis(selectedAnalysisId);
   const deleteAnalysis = useDeleteBrandAnalysis();
-  
+
   // Get credits from customer data
   const messageUsage = customer?.features?.messages ?? customer?.features?.['pro-messages'] ?? customer?.features?.['free-messages'];
   const credits = messageUsage ? (messageUsage.balance || 0) : 0;
@@ -38,10 +40,9 @@ function BrandMonitorContent({ session }: { session: any }) {
   }, [error, router]);
 
   const handleCreditsUpdate = async () => {
-    // Use the global refresh to update customer data everywhere
     await refreshCustomer();
   };
-  
+
   const handleDeleteAnalysis = async (analysisId: string) => {
     setAnalysisToDelete(analysisId);
     setDeleteDialogOpen(true);
@@ -56,7 +57,7 @@ function BrandMonitorContent({ session }: { session: any }) {
       setAnalysisToDelete(null);
     }
   };
-  
+
   const handleNewAnalysis = () => {
     setSelectedAnalysisId(null);
   };
@@ -70,13 +71,13 @@ function BrandMonitorContent({ session }: { session: any }) {
             <div className="flex items-center justify-between">
               <div className="text-center flex-1">
                 <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-2 animate-fade-in-up">
-                  <span className="block text-zinc-900">GEODash</span>
+                  <span className="block text-zinc-900">{t('hero.title1')}</span>
                   <span className="block bg-gradient-to-r from-blue-700 to-blue-400 bg-clip-text text-transparent">
-                    AI Brand Visibility Platform
+                    {t('hero.title2')}
                   </span>
                 </h1>
                 <p className="text-lg text-zinc-600 animate-fade-in-up animation-delay-200">
-                  Track how AI models rank your brand against competitors
+                  {t('hero.subtitle')}
                 </p>
               </div>
             </div>
@@ -108,15 +109,15 @@ function BrandMonitorContent({ session }: { session: any }) {
               className="w-full btn-firecrawl-blue"
             >
               <Plus className="w-4 h-4 mr-2" />
-              New Analysis
+              {t('sidebar.new')}
             </Button>
           </div>
-          
+
           <div className="overflow-y-auto flex-1">
             {analysesLoading ? (
-              <div className="p-4 text-center text-gray-500">Loading analyses...</div>
+              <div className="p-4 text-center text-gray-500">{t('sidebar.loading')}</div>
             ) : analyses?.length === 0 ? (
-              <div className="p-4 text-center text-gray-500">No analyses yet</div>
+              <div className="p-4 text-center text-gray-500">{t('sidebar.empty')}</div>
             ) : (
               <div className="space-y-1 p-2">
                 {analyses?.map((analysis) => (
@@ -130,13 +131,13 @@ function BrandMonitorContent({ session }: { session: any }) {
                     <div className="flex justify-between items-start">
                       <div className="flex-1 min-w-0">
                         <p className="font-medium truncate">
-                          {analysis.companyName || 'Untitled Analysis'}
+                          {analysis.companyName || t('analysis.untitled')}
                         </p>
                         <p className="text-sm text-gray-500 truncate">
                           {analysis.url}
                         </p>
                         <p className="text-xs text-gray-400">
-                          {analysis.createdAt && format(new Date(analysis.createdAt), 'MMM d, yyyy')}
+                          {analysis.createdAt && format(new Date(analysis.createdAt), t('analysis.dateFormat'))}
                         </p>
                       </div>
                       <Button
@@ -164,22 +165,21 @@ function BrandMonitorContent({ session }: { session: any }) {
               creditsAvailable={credits} 
               onCreditsUpdate={handleCreditsUpdate}
               selectedAnalysis={selectedAnalysisId ? currentAnalysis : null}
-              onSaveAnalysis={(analysis) => {
-                // This will be called when analysis completes
-                // We'll implement this in the next step
+              onSaveAnalysis={() => {
+                // Optionnel : callback à ajouter ici
               }}
             />
           </div>
         </div>
       </div>
-      
+
       <ConfirmationDialog
         open={deleteDialogOpen}
         onOpenChange={setDeleteDialogOpen}
-        title="Delete Analysis"
-        description="Are you sure you want to delete this analysis? This action cannot be undone."
-        confirmText="Delete"
-        cancelText="Cancel"
+        title={t('delete.title')}
+        description={t('delete.description')}
+        confirmText={t('delete.confirm')}
+        cancelText={t('delete.cancel')}
         onConfirm={confirmDelete}
         isLoading={deleteAnalysis.isPending}
       />
@@ -189,6 +189,7 @@ function BrandMonitorContent({ session }: { session: any }) {
 
 export default function BrandMonitorPage() {
   const { data: session, isPending } = useSession();
+  const t = useTranslations('brandMonitor');
 
   if (isPending) {
     return (
@@ -202,7 +203,7 @@ export default function BrandMonitorPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-600">Please log in to access the brand monitor</p>
+          <p className="text-gray-600">{t('notLoggedIn')}</p>
         </div>
       </div>
     );

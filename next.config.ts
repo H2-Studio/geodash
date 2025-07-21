@@ -1,29 +1,18 @@
-import type { NextConfig } from "next";
+const createNextIntlPlugin = require('next-intl/plugin');
 
-const nextConfig: NextConfig = {
+const withNextIntl = createNextIntlPlugin('./app/i18n/request.ts');
+
+module.exports = withNextIntl({
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
     ignoreBuildErrors: true,
   },
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-      {
-        protocol: 'http',
-        hostname: '**',
-      },
+      { protocol: 'https', hostname: '**' },
+      { protocol: 'http', hostname: '**' },
     ],
   },
-};
-
-export default nextConfig;
+});

@@ -11,6 +11,7 @@ import { Check, Loader2 } from "lucide-react";
 import AttachDialog from "@/components/autumn/attach-dialog";
 import { getPricingTableContent } from "@/lib/autumn/pricing-table-content";
 import { Product, ProductItem } from "autumn-js";
+import { useTranslations } from "next-intl";
 export default function PricingTable({
   productDetails,
 }: {
@@ -19,6 +20,7 @@ export default function PricingTable({
   const { attach } = useCustomer();
   const [isAnnual, setIsAnnual] = useState(false);
   const { products, isLoading, error } = usePricingTable({ productDetails });
+
 
   if (isLoading) {
     return (
@@ -192,6 +194,9 @@ export const PricingCard = ({
   className,
   buttonProps,
 }: PricingCardProps) => {
+
+  const t = useTranslations('home.pricing');
+  
   const { products, showFeatures } = usePricingTableContext("PricingCard");
 
   const product = products.find((p) => p.id === productId);
@@ -201,8 +206,9 @@ export const PricingCard = ({
   }
 
   const { name, display: productDisplay, items } = product;
+  
 
-  const { buttonText } = getPricingTableContent(product);
+  const { buttonText } = getPricingTableContent(product, t);
   const isRecommended = productDisplay?.recommend_text ? true : false;
   const mainPriceDisplay = product.properties?.is_free
     ? {

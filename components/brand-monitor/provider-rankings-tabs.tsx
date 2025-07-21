@@ -14,6 +14,7 @@ import { ProviderSpecificRanking } from "@/lib/types";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import Image from "next/image";
 import { getConfiguredProviders } from "@/lib/provider-config";
+import { useTranslations } from "next-intl"; // <--- Ajoute ce hook si besoin
 
 // Provider icon mapping
 const getProviderIcon = (provider: string) => {
@@ -87,7 +88,6 @@ interface ProviderRankingsTabsProps {
   weeklyChange?: number;
 }
 
-// Company cell component with favicon support
 const CompanyCell = ({
   name,
   isOwn,
@@ -99,7 +99,6 @@ const CompanyCell = ({
 }) => {
   const [faviconError, setFaviconError] = useState(false);
 
-  // Generate favicon URL using Google's favicon service
   const faviconUrl = url
     ? `https://www.google.com/s2/favicons?domain=${url}&sz=64`
     : null;
@@ -125,9 +124,7 @@ const CompanyCell = ({
         )}
       </div>
       <span
-        className={`text-sm ${
-          isOwn ? "font-semibold text-black" : "text-black"
-        }`}
+        className={`text-sm ${isOwn ? "font-semibold text-black" : "text-black"}`}
       >
         {name}
       </span>
@@ -135,7 +132,6 @@ const CompanyCell = ({
   );
 };
 
-// Generate a fallback URL from competitor name
 const generateFallbackUrl = (competitorName: string): string | undefined => {
   const cleanName = competitorName
     .toLowerCase()
@@ -161,6 +157,7 @@ export function ProviderRankingsTabs({
   sentimentScore,
   weeklyChange,
 }: ProviderRankingsTabsProps) {
+  const t = useTranslations("brandMonitor.providerRankings");
   const [selectedProvider, setSelectedProvider] = useState(
     providerRankings?.[0]?.provider || "OpenAI",
   );
@@ -172,19 +169,19 @@ export function ProviderRankingsTabs({
       case "positive":
         return (
           <Badge variant="secondary" className="bg-green-50 text-black text-xs">
-            Positive
+            {t("positive")}
           </Badge>
         );
       case "negative":
         return (
           <Badge variant="secondary" className="bg-red-50 text-black text-xs">
-            Negative
+            {t("negative", { defaultValue: "Negative" })}
           </Badge>
         );
       default:
         return (
           <Badge variant="secondary" className="bg-gray-50 text-black text-xs">
-            Neutral
+            {t("neutral")}
           </Badge>
         );
     }
@@ -196,7 +193,6 @@ export function ProviderRankingsTabs({
     return <TrendingDown className="h-3 w-3 text-black" />;
   };
 
-  // Get the selected provider's data
   const selectedProviderData = providerRankings.find(
     (p) => p.provider === selectedProvider,
   );
@@ -211,15 +207,15 @@ export function ProviderRankingsTabs({
         <div className="flex justify-between items-center">
           <div>
             <CardTitle className="text-xl font-semibold">
-              Provider Rankings
+              {t("title")}
             </CardTitle>
             <CardDescription className="text-sm text-gray-600 mt-1">
-              Your brand performance by AI provider
+              {t("description")}
             </CardDescription>
           </div>
           <div className="text-right">
             <p className="text-2xl font-bold text-blue-600">#{brandRank}</p>
-            <p className="text-xs text-gray-500 mt-1">Average Rank</p>
+            <p className="text-xs text-gray-500 mt-1">{t("averageRank")}</p>
           </div>
         </div>
       </CardHeader>
@@ -232,19 +228,16 @@ export function ProviderRankingsTabs({
           <TabsList
             className={`grid w-full mb-2 h-14 ${providerRankings.length === 2 ? "grid-cols-2" : providerRankings.length === 3 ? "grid-cols-3" : "grid-cols-4"}`}
           >
-            {providerRankings.map(({ provider }) => {
-              // Provider info is now handled by icon mapping directly
-              return (
-                <TabsTrigger
-                  key={provider}
-                  value={provider}
-                  className="text-sm flex items-center justify-center h-full"
-                  title={provider}
-                >
-                  {getProviderIcon(provider)}
-                </TabsTrigger>
-              );
-            })}
+            {providerRankings.map(({ provider }) => (
+              <TabsTrigger
+                key={provider}
+                value={provider}
+                className="text-sm flex items-center justify-center h-full"
+                title={provider}
+              >
+                {getProviderIcon(provider)}
+              </TabsTrigger>
+            ))}
           </TabsList>
 
           {providerRankings.map(({ provider, competitors }) => (
@@ -257,16 +250,16 @@ export function ProviderRankingsTabs({
                         #
                       </th>
                       <th className="bg-gray-50 border-b border-r border-gray-200 text-left p-3 text-xs font-medium text-gray-900 w-[200px]">
-                        Company
+                        {t("company")}
                       </th>
                       <th className="bg-gray-50 border-b border-r border-gray-200 text-right p-3 text-xs font-medium text-gray-900">
-                        Visibility
+                        {t("visibility")}
                       </th>
                       <th className="bg-gray-50 border-b border-r border-gray-200 text-right p-3 text-xs font-medium text-gray-900">
-                        Share of Voice
+                        {t("shareOfVoice")}
                       </th>
                       <th className="bg-gray-50 border-b border-gray-200 text-right p-3 text-xs font-medium text-gray-900">
-                        Sentiment
+                        {t("sentiment")}
                       </th>
                     </tr>
                   </thead>
@@ -329,33 +322,45 @@ export function ProviderRankingsTabs({
         {/* Metrics Row at Bottom */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mt-6 pt-6 border-t">
           <div className="bg-gray-50 rounded-lg p-4 text-center">
-            <p className="text-xs text-gray-500 mb-1">Competitors</p>
+            <p className="text-xs text-gray-500 mb-1">{t("competitors")}</p>
             <p className="text-lg font-semibold text-black">
               {competitors.length}
             </p>
           </div>
           <div className="bg-blue-50 rounded-lg p-4 text-center">
-            <p className="text-xs text-gray-500 mb-1">{brandName} Rank</p>
+            <p className="text-xs text-gray-500 mb-1">
+              {t("rank", { brand: brandName })}
+            </p>
             <p className="text-lg font-semibold text-black">#{brandRank}</p>
           </div>
           <div className="bg-gray-50 rounded-lg p-4 text-center">
-            <p className="text-xs text-gray-500 mb-1">{brandName} Visibility</p>
+            <p className="text-xs text-gray-500 mb-1">
+              {t("brandVisibility", { brand: brandName })}
+            </p>
             <p className="text-lg font-semibold text-black">
               {brandVisibility}%
             </p>
           </div>
           <div className="bg-gray-50 rounded-lg p-4 text-center">
-            <p className="text-xs text-gray-500 mb-1">Share of Voice</p>
-            <p className="text-lg font-semibold text-black">{shareOfVoice}%</p>
+            <p className="text-xs text-gray-500 mb-1">
+              {t("shareOfVoiceKpi")}
+            </p>
+            <p className="text-lg font-semibold text-black">
+              {shareOfVoice}%
+            </p>
           </div>
           <div className="bg-gray-50 rounded-lg p-4 text-center">
-            <p className="text-xs text-gray-500 mb-1">Average Position</p>
+            <p className="text-xs text-gray-500 mb-1">
+              {t("averagePosition")}
+            </p>
             <p className="text-lg font-semibold text-black">
               #{averagePosition}
             </p>
           </div>
           <div className="bg-gray-50 rounded-lg p-4 text-center">
-            <p className="text-xs text-gray-500 mb-1">Sentiment Score</p>
+            <p className="text-xs text-gray-500 mb-1">
+              {t("sentimentScore")}
+            </p>
             <p className="text-lg font-semibold text-black">
               {sentimentScore}%
             </p>

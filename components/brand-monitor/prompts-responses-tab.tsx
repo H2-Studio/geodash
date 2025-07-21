@@ -5,6 +5,7 @@ import { ChevronDown, ChevronsDown, ChevronsUp } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { BrandPrompt, AIResponse } from "@/lib/types";
 import { HighlightedResponse } from "./highlighted-response";
+import { useTranslations } from "next-intl";
 
 interface PromptsResponsesTabProps {
   prompts: BrandPrompt[];
@@ -89,6 +90,8 @@ export function PromptsResponsesTab({
   const [allExpanded, setAllExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const t = useTranslations("brandMonitor");
+
   const handleExpandAll = () => {
     if (allExpanded) {
       // Collapse all
@@ -136,7 +139,7 @@ export function PromptsResponsesTab({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search prompts and responses..."
+              placeholder={t("promptsResponses.searchPlaceholder")}
               className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
             />
             <svg
@@ -182,12 +185,12 @@ export function PromptsResponsesTab({
             {allExpanded ? (
               <>
                 <ChevronsUp className="h-4 w-4" />
-                Collapse All
+                {t("promptsResponses.collapseAll")}
               </>
             ) : (
               <>
                 <ChevronsDown className="h-4 w-4" />
-                Expand All
+                {t("promptsResponses.expandAll")}
               </>
             )}
           </button>

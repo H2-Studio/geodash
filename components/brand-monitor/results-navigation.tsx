@@ -1,5 +1,6 @@
 import React from "react";
 import { ResultsTab } from "@/lib/brand-monitor-reducer";
+import { useTranslations } from "next-intl"; // ou ton hook i18n
 
 interface BrandData {
   visibilityScore: number;
@@ -25,11 +26,12 @@ export function ResultsNavigation({
   brandData,
   brandName,
 }: ResultsNavigationProps) {
+  const t = useTranslations("brandMonitor.navigation");
+
   const handleTabClick = (tab: ResultsTab) => {
     onTabChange(tab);
   };
 
-  // Nouveau : blue-shadow
   const blueShadow =
     "[box-shadow:inset_0px_-2.108433723449707px_0px_0px_#1d4ed8,_0px_1.2048193216323853px_6.325301647186279px_0px_rgba(37,_99,_235,_58%)] hover:translate-y-[1px] hover:scale-[0.98]";
 
@@ -39,7 +41,7 @@ export function ResultsNavigation({
       style={{ animationDelay: "0.3s" }}
     >
       <div className="w-full flex flex-col justify-between flex-1">
-        {/* Navigation Tabs - at the top */}
+        {/* Navigation Tabs */}
         <div className="space-y-2">
           <button
             onClick={() => handleTabClick("matrix")}
@@ -49,7 +51,7 @@ export function ResultsNavigation({
                 : `bg-blue-500 text-white hover:bg-blue-600 ${blueShadow}`
             }`}
           >
-            Comparison Matrix
+            {t("matrix")}
           </button>
           <button
             onClick={() => handleTabClick("prompts")}
@@ -59,7 +61,7 @@ export function ResultsNavigation({
                 : `bg-blue-500 text-white hover:bg-blue-600 ${blueShadow}`
             }`}
           >
-            Prompts & Responses
+            {t("prompts")}
           </button>
           <button
             onClick={() => handleTabClick("rankings")}
@@ -69,7 +71,7 @@ export function ResultsNavigation({
                 : `bg-blue-500 text-white hover:bg-blue-600 ${blueShadow}`
             }`}
           >
-            Provider Rankings
+            {t("rankings")}
           </button>
           <button
             onClick={() => handleTabClick("visibility")}
@@ -79,11 +81,11 @@ export function ResultsNavigation({
                 : `bg-blue-500 text-white hover:bg-blue-600 ${blueShadow}`
             }`}
           >
-            Visibility Score
+            {t("visibility")}
           </button>
         </div>
 
-        {/* Analyze another website button - at the bottom */}
+        {/* Analyze another website */}
         <div className="pt-4 pb-8 border-t border-gray-200">
           <button
             onClick={onRestart}
@@ -102,7 +104,7 @@ export function ResultsNavigation({
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            Analyze another website
+            {t("analyzeAnother")}
           </button>
         </div>
       </div>

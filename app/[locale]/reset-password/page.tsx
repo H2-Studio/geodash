@@ -2,10 +2,10 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import Image from 'next/image';
 import { authClient } from '@/lib/auth-client';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
+import LocalizedLink from '@/components/localized-link';
 
 function ResetPasswordForm() {
   const [password, setPassword] = useState('');
@@ -85,12 +85,12 @@ function ResetPasswordForm() {
               <p className="mt-2 text-gray-600">
                 This password reset link is invalid or has expired.
               </p>
-              <Link 
+              <LocalizedLink
                 href="/forgot-password"
                 className="mt-6 inline-block btn-firecrawl-default whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-10 px-6 py-2"
               >
                 Request new reset link
-              </Link>
+              </LocalizedLink>
             </div>
           </div>
         </div>
@@ -203,10 +203,10 @@ function ResetPasswordForm() {
             </div>
 
             <div className="text-center">
-              <Link href="/login" className="text-sm text-blue-600 hover:text-blue-500 inline-flex items-center">
+              <LocalizedLink href="/login" className="text-sm text-blue-600 hover:text-blue-500 inline-flex items-center">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to login
-              </Link>
+              </LocalizedLink>
             </div>
           </form>
         </div>

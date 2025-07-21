@@ -1,0 +1,348 @@
+{
+  "home": {
+    "hero": {
+      "title1": "GeoDash",
+      "title2": "Plateforme de visibilité de marque par IA",
+      "subtitle": "Suivez comment les modèles d’IA classent votre marque face aux concurrents",
+      "cta": {
+        "analyze": "Commencer l’analyse",
+        "pricing": "Voir les tarifs"
+      },
+      "powered": "Propulsé par l’IA • Analyse en temps réel • Suivi des concurrents • Insights SEO"
+    },
+    "stats": {
+      "chatgpt": "ChatGPT",
+      "providers": "Claude, Perplexity & autres",
+      "realtime": "Temps réel",
+      "realtime_detail": "Analyse",
+      "competitor": "Concurrent",
+      "competitor_detail": "Suivi",
+      "actionable": "exploitables",
+      "actionable_detail": "informations"
+    },
+    "pricing": {
+      "title": "Tarification simple et transparente",
+      "subtitle": "Choisissez l’offre qui correspond à vos besoins. Vous pouvez changer à tout moment.",
+      "starter": {
+        "label": "Starter",
+        "desc": "Tout le nécessaire pour démarrer",
+        "price": "Gratuit",
+        "analyses": "10 analyses de marque / mois",
+        "providers": "Inclut ChatGPT, Claude, Perplexity",
+        "reports": "Rapports de visibilité IA de base",
+        "cta": "Commencer gratuitement"
+      },
+      "pro": {
+        "popular": "Le plus populaire",
+        "label": "Pro",
+        "desc": "Accès complet pour les marques en croissance",
+        "price": "10 €/mois",
+        "analyses": "Analyses illimitées",
+        "providers": "Tous les fournisseurs IA inclus",
+        "alerts": "Alertes e-mail & suivi des tendances",
+        "cta": "Passer en Pro"
+      },
+      "enterprise": {
+        "label": "Entreprise",
+        "desc": "Fonctionnalités sur mesure pour grandes équipes",
+        "price": "Contactez-nous",
+        "multiple": "Gestion multi-marques & équipes",
+        "api": "API & intégrations",
+        "whitelabel": "Livre blanc & rapports personnalisés",
+        "cta": "Contacter les ventes"
+      },
+      "link_detail": "Voir tous les détails des offres",
+      "loggedInAs": "Connecté en tant que : {email}",
+      "actions": {
+        "startTrial": "Démarrer l’essai gratuit",
+        "planScheduled": "Planifié",
+        "currentPlan": "Abonnement actuel",
+        "purchase": "Acheter",
+        "getStarted": "Commencer",
+        "renew": "Renouveler",
+        "upgrade": "Mettre à niveau",
+        "downgrade": "Rétrograder",
+        "cancelPlan": "Annuler l’abonnement"
+      },
+      "plans": {
+        "free": {
+          "name": "Gratuit",
+          "desc": "Parfait pour essayer notre service",
+          "priceMain": "Gratuit",
+          "priceSub": "Aucune carte requise",
+          "items": [
+            {
+              "primary": "10 messages par mois",
+              "secondary": "Réponses IA automatisées"
+            },
+            {
+              "primary": "Support communautaire",
+              "secondary": "Obtenez de l’aide de notre communauté"
+            },
+            {
+              "primary": "Fonctionnalités de base",
+              "secondary": "Outils essentiels pour commencer"
+            }
+          ]
+        },
+        "pro": {
+          "name": "Pro",
+          "desc": "Pour tous vos besoins de messagerie",
+          "recommend": "Le plus populaire",
+          "priceMain": "10 €/mois",
+          "priceSub": "facturé mensuellement",
+          "items": [
+            {
+              "primary": "100 messages par mois",
+              "secondary": "Réponses IA automatisées"
+            },
+            {
+              "primary": "Support premium",
+              "secondary": "Obtenez de l’aide de notre équipe"
+            },
+            {
+              "primary": "Accès prioritaire",
+              "secondary": "Essayez les nouveautés en premier"
+            }
+          ]
+        }
+      }
+    },
+    "cta": {
+      "title": "Voyez comment les IA classent votre marque",
+      "subtitle": "Surveillez la visibilité de votre marque sur ChatGPT, Claude, Perplexity et plus",
+      "analyze": "Commencer une analyse gratuite"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "subtitle": "Tout ce qu’il faut savoir sur GeoDash",
+      "1": {
+        "q": "Comment fonctionne GeoDash ?",
+        "a": "GeoDash analyse la visibilité de votre marque sur les principales plateformes IA comme ChatGPT, Claude et Perplexity. Entrez simplement l’URL de votre site et découvrez comment les IA classent votre marque face aux concurrents, quels prompts déclenchent votre présence, et bénéficiez d’insights pour améliorer votre visibilité IA."
+      },
+      "2": {
+        "q": "Quels fournisseurs IA surveillez-vous ?",
+        "a": "Nous surveillons toutes les grandes plateformes IA : ChatGPT (OpenAI), Claude (Anthropic), Perplexity, Gemini (Google) et plus encore. Le système évolue en permanence pour intégrer les nouveaux fournisseurs dès leur lancement."
+      },
+      "3": {
+        "q": "À quelle fréquence les données sont-elles mises à jour ?",
+        "a": "Le monitoring est en temps réel : chaque analyse interroge tous les fournisseurs IA pour des résultats à jour. Lancez une nouvelle analyse à tout moment pour suivre l’évolution de votre visibilité."
+      },
+      "4": {
+        "q": "Quels insights vais-je recevoir ?",
+        "a": "Vous verrez votre score de visibilité, le classement parmi les concurrents, quels prompts déclenchent la mention de votre marque, une analyse de la qualité des réponses, et des recommandations personnalisées pour booster votre présence IA."
+      },
+      "5": {
+        "q": "Combien de crédits ai-je besoin ?",
+        "a": "Chaque analyse utilise 10 crédits (1 pour l’URL, 9 pour la scan IA complet). Le forfait gratuit comprend 100 crédits/mois, soit 10 analyses complètes. Le plan Pro offre un suivi illimité."
+      }
+    },
+    "finalcta": {
+      "title": "Surveillez la visibilité de votre marque par l’IA",
+      "subtitle": "Contrôlez la manière dont les IA présentent votre marque",
+      "analyze": "Analyser ma marque",
+      "pricing": "Voir les tarifs"
+    }
+  },
+  "footer": {
+    "description": "Surveillez et optimisez la visibilité de votre marque dans l’IA et les LLM.",
+    "product": "Produit",
+    "plans": "Offres",
+    "docs": "Documentation",
+    "api": "Référence API",
+    "demo": "Démo",
+    "company": "Entreprise",
+    "about": "À propos",
+    "blog": "Blog",
+    "careers": "Carrières",
+    "contact": "Contact",
+    "copyright": "© 2024 GEODash. Tous droits réservés.",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d’utilisation"
+  },
+  "brandMonitor": {
+    "analysisProgress": {
+      "titleProgress": "Progression de l'analyse",
+      "titlePrompts": "Prompts",
+      "competitorsLabel": "Concurrents :",
+      "validatingCompetitors": "Validation des concurrents en arrière-plan…",
+      "removePrompt": "Supprimer le prompt",
+      "customPrompt": "Personnalisé",
+      "addPrompt": "Ajouter un prompt",
+      "start": "Lancer l'analyse",
+      "analyzing": "Analyse en cours…",
+      "best": "Meilleurs {type} en {year} ?",
+      "topStartups": "Top {type} pour startups ?",
+      "mostPopular": "{type} les plus populaires aujourd'hui ?",
+      "recommendedForDevs": "{type} recommandés pour les développeurs ?"
+    },
+    "companyCard": {
+      "websiteLink": "Ouvrir le site de la marque",
+      "analyzing": "Analyse en cours…",
+      "identify": "Identifier les concurrents",
+      "moreKeywords": "+{count} de plus",
+      "competitorsTitle": "Concurrents",
+      "competitorsDescription": "Nous comparerons {brand} à ces {count} concurrents",
+      "addCompetitor": "Ajouter un concurrent",
+      "continue": "Continuer vers l'analyse",
+      "viewCompetitor": "Ouvrir le site du concurrent",
+      "removeCompetitor": "Supprimer le concurrent"
+    },
+    "input": {
+      "placeholder": "Entrez l’URL de votre site (ex : example.com)",
+      "example": "example.com",
+      "analyzeLabel": "Analyser le site"
+    },
+    "progress": {
+      "startingAnalysis": "Démarrage de l’analyse…",
+      "scraping": "Extraction des données marque et secteur…",
+      "checkingProviders": "Vérification des IA disponibles…",
+      "identifyingCompetitors": "Identification des concurrents…",
+      "generatingPrompts": "Génération des prompts pertinents…",
+      "runningPrompts": "Exécution des prompts…",
+      "scoring": "Évaluation des résultats…",
+      "finalizing": "Finalisation des résultats…",
+      "done": "Analyse terminée."
+    },
+    "results": {
+      "comparisonMatrixTitle": "Matrice de comparaison",
+      "comparisonMatrixDescription": "Comparez la visibilité sur les différents fournisseurs d’IA",
+      "averageScore": "Score moyen",
+      "noComparisonData": "Aucune donnée de comparaison disponible",
+      "noComparisonHelp": "Veuillez vérifier la configuration des IA et relancer l'analyse.",
+      "promptsResponsesTitle": "Prompts & Réponses",
+      "promptsResponsesDescription": "Réponses IA à vos requêtes marque",
+      "totalPrompts": "Prompts au total"
+    },
+    "errors": {
+      "enterUrl": "Veuillez saisir une URL",
+      "validUrlExample": "Merci d’entrer une URL valide (ex : example.com ou https://example.com)",
+      "insufficientCredits": "Crédits insuffisants. Il vous faut au moins 1 crédit pour analyser une URL.",
+      "insufficientCreditsAnalysis": "Crédits insuffisants. Il vous faut au moins {credits} crédits pour lancer une analyse.",
+      "failedToExtract": "Impossible d'extraire les informations de la marque",
+      "failedToExtractWithMsg": "Impossible d'extraire les infos : {message}",
+      "noCompanyData": "Aucune donnée marque reçue",
+      "couldNotGenerateSuggestions": "Impossible de générer des suggestions personnalisées.",
+      "failedToScrape": "Erreur lors de l’extraction"
+    },
+    "defaultPrompts": {
+      "best": "Meilleurs {type} en {year} ?",
+      "topStartups": "Top {type} pour startups ?",
+      "popular": "{type} les plus populaires aujourd'hui ?",
+      "recommended": "{type} recommandés pour les développeurs ?"
+    },
+    "actions": {
+      "randomizePrompts": "Générer de nouveaux prompts personnalisés"
+    },
+    "hero": {
+      "title1": "GEODash",
+      "title2": "Plateforme de visibilité IA",
+      "subtitle": "Suivez le classement de votre marque face aux concurrents dans les IA"
+    },
+    "matrix": {
+      "title": "Matrice de comparaison",
+      "description": "Comparez les scores de visibilité entre les différents fournisseurs d'IA",
+      "averageScore": "Score moyen"
+    },
+    "promptsResponses": {
+      "title": "Prompts & Réponses",
+      "description": "Réponses de l’IA à vos requêtes marque",
+      "totalPrompts": "Nombre total de prompts",
+      "searchPlaceholder": "Rechercher des prompts et des réponses...",
+      "expandAll": "Tout développer",
+      "collapseAll": "Tout réduire"
+    },
+    "providerRankings": {
+      "title": "Classement des fournisseurs",
+      "description": "Performance de votre marque par fournisseur d’IA",
+      "averageRank": "Classement moyen",
+      "company": "Marque",
+      "visibility": "Visibilité",
+      "shareOfVoice": "Part de voix",
+      "sentiment": "Sentiment",
+      "positive": "Positif",
+      "neutral": "Neutre",
+      "competitors": "Concurrents",
+      "rank": "Classement de {brand}",
+      "brandVisibility": "Visibilité de {brand}",
+      "shareOfVoiceKpi": "Part de voix",
+      "averagePosition": "Position moyenne",
+      "sentimentScore": "Score de sentiment"
+    },
+    "navigation": {
+      "matrix": "Matrice de comparaison",
+      "prompts": "Prompts & Réponses",
+      "rankings": "Classement des fournisseurs",
+      "visibility": "Score de visibilité",
+      "analyzeAnother": "Analyser une autre marque"
+    },
+    "sidebar": {
+      "new": "Nouvelle analyse",
+      "loading": "Chargement des analyses…",
+      "empty": "Aucune analyse encore"
+    },
+    "analysis": {
+      "untitled": "Analyse sans titre",
+      "dateFormat": "d MMM yyyy"
+    },
+    "delete": {
+      "title": "Supprimer l'analyse",
+      "description": "Voulez-vous vraiment supprimer cette analyse ? Cette action est irréversible.",
+      "confirm": "Supprimer",
+      "cancel": "Annuler"
+    },
+    "notLoggedIn": "Connectez-vous pour accéder au Brand Monitor",
+    "visibilityScore": {
+      "title": "Score de visibilité",
+      "description": "Votre visibilité sur les différents fournisseurs d'IA",
+      "overallScore": "Score global",
+      "rank": "Classement",
+      "vsTopRank": "{percent}% vs n°{rank}",
+      "tooltipValue": "{name} : {value}%"
+    }
+  },
+  "navbar": {
+    "brandMonitor": "Brand Monitor",
+    "plans": "Abonnements",
+    "credits": "crédits",
+    "loading": "Chargement...",
+    "dashboard": "Tableau de bord",
+    "loggingOut": "Déconnexion...",
+    "logout": "Déconnexion",
+    "login": "Connexion",
+    "register": "Créer un compte",
+    "openMenu": "Ouvrir le menu"
+  },
+  "dashboard": {
+    "dashboardTitle": "Tableau de bord",
+    "profileInfo": "Informations du profil",
+    "editProfile": "Modifier le profil",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "email": "E-mail",
+    "displayName": "Nom affiché",
+    "phone": "Téléphone",
+    "bio": "Bio",
+    "bioPlaceholder": "Parlez-nous de vous",
+    "notSet": "Non renseigné",
+    "settings": "Paramètres",
+    "emailNotif": "Notifications e-mail",
+    "emailNotifDesc": "Recevoir des notifications importantes par e-mail",
+    "marketingEmails": "E-mails marketing",
+    "marketingEmailsDesc": "Recevoir des e-mails sur les nouveautés et offres",
+    "accountInfo": "Informations du compte",
+    "currentPlan": "Abonnement actuel",
+    "changingToOn": "Changement vers {plan} le {date}",
+    "freePlan": "Offre gratuite",
+    "usageStats": "Statistiques d'utilisation",
+    "used": "Utilisé",
+    "noUsage": "Aucune donnée d'utilisation",
+    "availablePlans": "Offres disponibles",
+    "downgrade": "Rétrograder",
+    "upgrade": "Mettre à niveau",
+    "startsOn": "Commence le {date}",
+    "loading": "Chargement...",
+    "displayNamePlaceholder": "Entrez votre nom affiché",
+    "phonePlaceholder": "Entrez votre numéro de téléphone"
+  }
+}

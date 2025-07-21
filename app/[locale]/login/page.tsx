@@ -2,9 +2,9 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import Image from 'next/image';
 import { signIn } from '@/lib/auth-client';
+import LocalizedLink from '@/components/localized-link';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -86,9 +86,9 @@ function LoginForm() {
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
               Or{' '}
-              <Link href="/register" className="font-medium text-blue-600 hover:text-blue-500">
+              <LocalizedLink href="/register" className="font-medium text-blue-600 hover:text-blue-500">
                 create a new account
-              </Link>
+              </LocalizedLink>
             </p>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleLogin}>
@@ -139,9 +139,9 @@ function LoginForm() {
                   Remember me
                 </label>
               </div>
-              <Link href="/forgot-password" className="text-sm text-blue-600 hover:text-blue-500">
+              <LocalizedLink href="/forgot-password" className="text-sm text-blue-600 hover:text-blue-500">
                 Forgot your password?
-              </Link>
+              </LocalizedLink>
             </div>
 
             {success && (

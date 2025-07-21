@@ -1,8 +1,8 @@
 'use client';
 
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
+import LocalizedLink from "./localized-link";
 
 interface Product {
   id: string;
@@ -94,12 +94,12 @@ export function PublicPricingTable() {
               Community support
             </li>
           </ul>
-          <Link
+          <LocalizedLink
             href="/register"
             className="btn-firecrawl-outline w-full inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-10 px-4"
           >
             Start free
-          </Link>
+          </LocalizedLink>
         </div>
 
         {/* Pro - Featured */}
@@ -133,12 +133,12 @@ export function PublicPricingTable() {
               Priority support
             </li>
           </ul>
-          <Link
+          <LocalizedLink
             href="/register"
             className="btn-firecrawl-blue w-full inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-10 px-4"
           >
             Start free trial
-          </Link>
+          </LocalizedLink>
         </div>
 
         {/* Enterprise */}
@@ -168,12 +168,12 @@ export function PublicPricingTable() {
               Dedicated support
             </li>
           </ul>
-          <Link
+          <LocalizedLink
             href="/contact"
             className="btn-firecrawl-outline w-full inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-10 px-4"
           >
             Contact sales
-          </Link>
+          </LocalizedLink>
         </div>
       </div>
     );
@@ -224,14 +224,14 @@ export function PublicPricingTable() {
                 </li>
               ))}
             </ul>
-            <Link
+            <LocalizedLink
               href="/register"
               className={`${
                 isRecommended ? 'btn-firecrawl-blue' : 'btn-firecrawl-outline'
               } w-full inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-200 h-10 px-4`}
             >
               {product.properties?.is_free ? 'Start free' : 'Get started'}
-            </Link>
+            </LocalizedLink>
           </div>
         );
       })}

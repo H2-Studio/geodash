@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { signUp } from '@/lib/auth-client';
+import LocalizedLink from '@/components/localized-link';
 
 export default function RegisterPage() {
   const [name, setName] = useState('');
@@ -108,9 +108,9 @@ export default function RegisterPage() {
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
               Or{' '}
-              <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500">
+              <LocalizedLink href="/login" className="font-medium text-blue-600 hover:text-blue-500">
                 sign in to existing account
-              </Link>
+              </LocalizedLink>
             </p>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleRegister}>
@@ -177,18 +177,18 @@ export default function RegisterPage() {
                       It looks like you already have an account with this email address.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-2">
-                      <Link 
+                      <LocalizedLink 
                         href={`/login?email=${encodeURIComponent(email)}`}
                         className="inline-flex items-center justify-center px-4 py-2 border border-blue-500 text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-gray-900 transition-colors"
                       >
                         Sign in instead
-                      </Link>
-                      <Link 
+                      </LocalizedLink>
+                      <LocalizedLink 
                         href="/forgot-password"
                         className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md text-blue-400 hover:text-blue-300 focus:outline-none focus:underline transition-colors"
                       >
                         Forgot password?
-                      </Link>
+                      </LocalizedLink>
                     </div>
                   </div>
                 )}
@@ -206,13 +206,13 @@ export default function RegisterPage() {
                 />
                 <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
                   I agree to the{' '}
-                  <Link href="#" className="text-blue-600 hover:text-blue-500">
+                  <LocalizedLink href="#" className="text-blue-600 hover:text-blue-500">
                     Terms of Service
-                  </Link>{' '}
+                  </LocalizedLink>{' '}
                   and{' '}
-                  <Link href="#" className="text-blue-600 hover:text-blue-500">
+                  <LocalizedLink href="#" className="text-blue-600 hover:text-blue-500">
                     Privacy Policy
-                  </Link>
+                  </LocalizedLink>
                 </label>
               </div>
               <button

@@ -1,0 +1,348 @@
+{
+  "home": {
+    "hero": {
+      "title1": "GeoDash",
+      "title2": "AI Brand Visibility Platform",
+      "subtitle": "See how AI models rank your brand against competitors",
+      "cta": {
+        "analyze": "Start Analysis",
+        "pricing": "See Pricing"
+      },
+      "powered": "Powered by AI • Real-time Analysis • Competitor Tracking • SEO Insights"
+    },
+    "stats": {
+      "chatgpt": "ChatGPT",
+      "providers": "Claude, Perplexity & more",
+      "realtime": "Real-time",
+      "realtime_detail": "Analysis",
+      "competitor": "Competitor",
+      "competitor_detail": "Tracking",
+      "actionable": "Actionable",
+      "actionable_detail": "Insights"
+    },
+    "pricing": {
+      "title": "Simple, transparent pricing",
+      "subtitle": "Choose the plan that fits your needs. You can change anytime.",
+      "loggedInAs": "Logged in as: {email}",
+      "starter": {
+        "label": "Starter",
+        "desc": "All the essentials for getting started",
+        "price": "Free",
+        "analyses": "10 brand analyses/month",
+        "providers": "Includes ChatGPT, Claude, Perplexity",
+        "reports": "Basic AI visibility reports",
+        "cta": "Get started for free"
+      },
+      "pro": {
+        "popular": "Most Popular",
+        "label": "Pro",
+        "desc": "Full access for growing brands",
+        "price": "$10/month",
+        "analyses": "Unlimited brand analyses",
+        "providers": "All AI providers included",
+        "alerts": "Email alerts & trend tracking",
+        "cta": "Upgrade to Pro"
+      },
+      "enterprise": {
+        "label": "Enterprise",
+        "desc": "Custom features for large teams",
+        "price": "Contact us",
+        "multiple": "Multiple brands & teams",
+        "api": "API access & integrations",
+        "whitelabel": "White-label & custom reporting",
+        "cta": "Contact Sales"
+      },
+      "link_detail": "See full pricing & plan details",
+      "actions": {
+        "startTrial": "Start Free Trial",
+        "planScheduled": "Scheduled",
+        "currentPlan": "Current Plan",
+        "purchase": "Purchase",
+        "getStarted": "Get started",
+        "renew": "Renew",
+        "upgrade": "Upgrade",
+        "downgrade": "Downgrade",
+        "cancelPlan": "Cancel Plan"
+      },
+      "plans": {
+        "free": {
+          "name": "Free",
+          "desc": "Perfect for trying out our service",
+          "priceMain": "Free",
+          "priceSub": "No card required",
+          "items": [
+            {
+              "primary": "10 messages per month",
+              "secondary": "Automated AI responses"
+            },
+            {
+              "primary": "Community support",
+              "secondary": "Get help from our community"
+            },
+            {
+              "primary": "Basic features",
+              "secondary": "Essential tools to get started"
+            }
+          ]
+        },
+        "pro": {
+          "name": "Pro",
+          "desc": "For all your messaging needs",
+          "recommend": "Most popular",
+          "priceMain": "€10/month",
+          "priceSub": "billed monthly",
+          "items": [
+            {
+              "primary": "100 messages per month",
+              "secondary": "Automated AI responses"
+            },
+            {
+              "primary": "Premium support",
+              "secondary": "Get help from our team"
+            },
+            {
+              "primary": "Priority access",
+              "secondary": "Be first to try new features"
+            }
+          ]
+        }
+      }
+    },
+    "cta": {
+      "title": "See how AI models rank your brand",
+      "subtitle": "Monitor your brand visibility on ChatGPT, Claude, Perplexity and more",
+      "analyze": "Start free analysis"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "Everything you need to know about GeoDash",
+      "1": {
+        "q": "How does GeoDash work?",
+        "a": "GeoDash analyzes your brand’s visibility on major AI platforms like ChatGPT, Claude, and Perplexity. Just enter your website URL and see how AIs rank your brand against competitors, what prompts trigger your appearance, and get insights to improve your AI visibility."
+      },
+      "2": {
+        "q": "Which AI providers do you monitor?",
+        "a": "We monitor all major AI platforms: ChatGPT (OpenAI), Claude (Anthropic), Perplexity, Gemini (Google), and more. The system evolves continuously to include new providers as soon as they launch."
+      },
+      "3": {
+        "q": "How often is the data updated?",
+        "a": "Monitoring is real-time: every analysis queries all AI providers for up-to-date results. Start a new analysis anytime to track your brand visibility’s evolution."
+      },
+      "4": {
+        "q": "What insights will I get?",
+        "a": "You'll see your visibility score, your rank among competitors, which prompts trigger your brand, an analysis of the response quality, and personalized recommendations to boost your AI presence."
+      },
+      "5": {
+        "q": "How many credits do I need?",
+        "a": "Each analysis uses 10 credits (1 for the URL, 9 for the full AI scan). The free plan includes 100 credits/month, or 10 full analyses. The Pro plan offers unlimited tracking."
+      }
+    },
+    "finalcta": {
+      "title": "Monitor your AI brand visibility",
+      "subtitle": "Control how AIs present your brand",
+      "analyze": "Analyze my brand",
+      "pricing": "See Pricing"
+    }
+  },
+  "footer": {
+    "description": "Monitor and optimize your brand’s visibility in AI and LLMs.",
+    "product": "Product",
+    "plans": "Plans",
+    "docs": "Documentation",
+    "api": "API Reference",
+    "demo": "Demo",
+    "company": "Company",
+    "about": "About",
+    "blog": "Blog",
+    "careers": "Careers",
+    "contact": "Contact",
+    "copyright": "© 2024 GEODash. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "brandMonitor": {
+    "analysisProgress": {
+      "titleProgress": "Analysis Progress",
+      "titlePrompts": "Prompts",
+      "competitorsLabel": "Competitors:",
+      "validatingCompetitors": "Validating competitor data in background...",
+      "removePrompt": "Remove prompt",
+      "customPrompt": "Custom",
+      "addPrompt": "Add Prompt",
+      "start": "Start Analysis",
+      "analyzing": "Analyzing...",
+      "best": "Best {type}s in {year}?",
+      "topStartups": "Top {type}s for startups?",
+      "mostPopular": "Most popular {type}s today?",
+      "recommendedForDevs": "Recommended {type}s for developers?"
+    },
+    "companyCard": {
+      "websiteLink": "Open brand website",
+      "analyzing": "Analyzing...",
+      "identify": "Identify Competitors",
+      "moreKeywords": "+{count} more",
+      "competitorsTitle": "Competitors",
+      "competitorsDescription": "We'll compare {brand} against these {count} competitors",
+      "addCompetitor": "Add Competitor",
+      "continue": "Continue to Analysis",
+      "viewCompetitor": "Open competitor site",
+      "removeCompetitor": "Remove competitor"
+    },
+    "input": {
+      "placeholder": "Enter your website URL (e.g., example.com)",
+      "example": "example.com",
+      "analyzeLabel": "Analyze website"
+    },
+    "progress": {
+      "startingAnalysis": "Starting analysis...",
+      "scraping": "Extracting brand and industry data...",
+      "checkingProviders": "Checking available AI providers...",
+      "identifyingCompetitors": "Identifying competitors...",
+      "generatingPrompts": "Generating relevant prompts...",
+      "runningPrompts": "Running prompts...",
+      "scoring": "Scoring results...",
+      "finalizing": "Finalizing results...",
+      "done": "Analysis complete."
+    },
+    "results": {
+      "comparisonMatrixTitle": "Comparison Matrix",
+      "comparisonMatrixDescription": "Compare visibility scores across different AI providers",
+      "averageScore": "Average Score",
+      "noComparisonData": "No comparison data available",
+      "noComparisonHelp": "Please ensure AI providers are configured and the analysis has completed.",
+      "promptsResponsesTitle": "Prompts & Responses",
+      "promptsResponsesDescription": "AI responses to your brand queries",
+      "totalPrompts": "Total Prompts"
+    },
+    "errors": {
+      "enterUrl": "Please enter a URL",
+      "validUrlExample": "Please enter a valid URL (e.g., example.com or https://example.com)",
+      "insufficientCredits": "Insufficient credits. You need at least 1 credit to analyze a URL.",
+      "insufficientCreditsAnalysis": "Insufficient credits. You need at least {credits} credits to run an analysis.",
+      "failedToExtract": "Failed to extract company information",
+      "failedToExtractWithMsg": "Failed to extract company information: {message}",
+      "noCompanyData": "No company data received",
+      "couldNotGenerateSuggestions": "Could not generate personalized suggestions.",
+      "failedToScrape": "Failed to scrape"
+    },
+    "defaultPrompts": {
+      "best": "Best {type}s in {year}?",
+      "topStartups": "Top {type}s for startups?",
+      "popular": "Most popular {type}s today?",
+      "recommended": "Recommended {type}s for developers?"
+    },
+    "actions": {
+      "randomizePrompts": "Generate new personalized prompts"
+    },
+    "hero": {
+      "title1": "GEODash",
+      "title2": "AI Visibility Platform",
+      "subtitle": "Track your brand’s ranking against competitors in AI"
+    },
+    "matrix": {
+      "title": "Comparison Matrix",
+      "description": "Compare visibility scores between different AI providers",
+      "averageScore": "Average Score"
+    },
+    "promptsResponses": {
+      "title": "Prompts & Responses",
+      "description": "AI responses to your brand queries",
+      "totalPrompts": "Total prompts",
+      "searchPlaceholder": "Search prompts and responses...",
+      "expandAll": "Expand All",
+      "collapseAll": "Collapse All"
+    },
+    "providerRankings": {
+      "title": "Provider Rankings",
+      "description": "Your brand’s performance by AI provider",
+      "averageRank": "Average Rank",
+      "company": "Brand",
+      "visibility": "Visibility",
+      "shareOfVoice": "Share of Voice",
+      "sentiment": "Sentiment",
+      "positive": "Positive",
+      "neutral": "Neutral",
+      "competitors": "Competitors",
+      "rank": "{brand} Rank",
+      "brandVisibility": "{brand} Visibility",
+      "shareOfVoiceKpi": "Share of Voice",
+      "averagePosition": "Average Position",
+      "sentimentScore": "Sentiment Score"
+    },
+    "navigation": {
+      "matrix": "Comparison Matrix",
+      "prompts": "Prompts & Responses",
+      "rankings": "Provider Rankings",
+      "visibility": "Visibility Score",
+      "analyzeAnother": "Analyze another brand"
+    },
+    "sidebar": {
+      "new": "New Analysis",
+      "loading": "Loading analyses...",
+      "empty": "No analyses yet"
+    },
+    "analysis": {
+      "untitled": "Untitled Analysis",
+      "dateFormat": "d MMM yyyy"
+    },
+    "delete": {
+      "title": "Delete Analysis",
+      "description": "Are you sure you want to delete this analysis? This action cannot be undone.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    },
+    "notLoggedIn": "Please log in to access the Brand Monitor",
+    "visibilityScore": {
+      "title": "Visibility Score",
+      "description": "Your brand visibility across AI providers",
+      "overallScore": "Overall Score",
+      "rank": "Rank",
+      "vsTopRank": "{percent}% vs n°{rank}",
+      "tooltipValue": "{name}: {value}%"
+    }
+  },
+  "navbar": {
+    "brandMonitor": "Brand Monitor",
+    "plans": "Plans",
+    "credits": "credits",
+    "loading": "Loading...",
+    "dashboard": "Dashboard",
+    "loggingOut": "Logging out...",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register",
+    "openMenu": "Open menu"
+  },
+  "dashboard": {
+    "dashboardTitle": "Dashboard",
+    "profileInfo": "Profile Information",
+    "editProfile": "Edit Profile",
+    "save": "Save",
+    "cancel": "Cancel",
+    "email": "Email",
+    "displayName": "Display Name",
+    "phone": "Phone",
+    "bio": "Bio",
+    "bioPlaceholder": "Tell us about yourself",
+    "notSet": "Not set",
+    "settings": "Settings",
+    "emailNotif": "Email Notifications",
+    "emailNotifDesc": "Receive email notifications for important updates",
+    "marketingEmails": "Marketing Emails",
+    "marketingEmailsDesc": "Receive emails about new features and offers",
+    "accountInfo": "Account Information",
+    "currentPlan": "Current Plan",
+    "changingToOn": "Changing to {plan} on {date}",
+    "freePlan": "Free Plan",
+    "usageStats": "Usage Statistics",
+    "used": "Used",
+    "noUsage": "No usage data available",
+    "availablePlans": "Available Plans",
+    "downgrade": "Downgrade",
+    "upgrade": "Upgrade",
+    "startsOn": "Starts {date}",
+    "loading": "Loading...",
+    "displayNamePlaceholder": "Enter your display name",
+    "phonePlaceholder": "Enter your phone number"
+  }
+}

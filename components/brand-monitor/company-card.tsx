@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Globe, Building2, ExternalLink, Plus, Trash2 } from "lucide-react";
 import { Company } from "@/lib/types";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 interface CompanyCardProps {
   company: Company;
@@ -46,6 +47,7 @@ export function CompanyCard({
 }: CompanyCardProps) {
   const [logoError, setLogoError] = React.useState(false);
   const [faviconError, setFaviconError] = React.useState(false);
+  const t = useTranslations('brandMonitor');
 
   // Validate URLs
   const isValidUrl = (url: string | undefined): boolean => {
@@ -102,6 +104,7 @@ export function CompanyCard({
             target="_blank"
             rel="noopener noreferrer"
             className="absolute top-4 right-4 p-2 rounded-lg bg-white/90 backdrop-blur-sm hover:bg-white transition-all shadow-md group"
+            aria-label={t('companyCard.websiteLink')}
           >
             <ExternalLink className="h-4 w-4 text-gray-600 group-hover:text-gray-900" />
           </a>
@@ -132,10 +135,10 @@ export function CompanyCard({
               {analyzing ? (
                 <>
                   <div className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin mr-2" />
-                  Analyzing...
+                  {t('companyCard.analyzing')}
                 </>
               ) : (
-                "Identify Competitors"
+                t('companyCard.identify')
               )}
             </button>
           </div>
@@ -160,7 +163,9 @@ export function CompanyCard({
                   ))}
                 {company.scrapedData.keywords.length > 6 && (
                   <span className="text-xs text-gray-500">
-                    +{company.scrapedData.keywords.length - 6} more
+                    {t('companyCard.moreKeywords', {
+                      count: company.scrapedData.keywords.length - 6,
+                    })}
                   </span>
                 )}
               </div>
@@ -175,11 +180,13 @@ export function CompanyCard({
             <div className="mb-4">
               <div>
                 <h3 className="text-sm font-medium text-gray-900">
-                  Competitors
+                  {t('companyCard.competitorsTitle')}
                 </h3>
                 <p className="text-sm text-gray-500">
-                  We'll compare {company.name} against these{" "}
-                  {identifiedCompetitors.length} competitors
+                  {t('companyCard.competitorsDescription', {
+                    brand: company.name,
+                    count: identifiedCompetitors.length,
+                  })}
                 </p>
               </div>
             </div>
@@ -238,6 +245,7 @@ export function CompanyCard({
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-gray-400 hover:text-gray-600 transition-colors"
+                            aria-label={t('companyCard.viewCompetitor')}
                           >
                             <ExternalLink className="w-3 h-3" />
                           </a>
@@ -256,6 +264,7 @@ export function CompanyCard({
                     <button
                       onClick={() => onRemoveCompetitor(idx)}
                       className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-red-50"
+                      aria-label={t('companyCard.removeCompetitor')}
                     >
                       <Trash2 className="w-3.5 h-3.5 text-red-600" />
                     </button>
@@ -276,9 +285,10 @@ export function CompanyCard({
   active:translate-y-[2px] active:scale-[0.97]
   active:[box-shadow:inset_0px_1px_1px_0px_#1d4ed8,_0px_1px_2px_0px_rgba(37,_99,_235,_30%)]
 "
+                  aria-label={t('companyCard.addCompetitor')}
                 >
                   <Plus className="w-4 h-4" />
-                  Add Competitor
+                  {t('companyCard.addCompetitor')}
                 </button>
               )}
 
@@ -288,8 +298,9 @@ export function CompanyCard({
                 <button
                   onClick={onContinueToAnalysis}
                   className="h-10 px-6 rounded-[10px] text-sm font-medium flex items-center transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 bg-[#36322F] text-[#fff] hover:bg-[#4a4542] disabled:bg-[#8c8885] disabled:hover:bg-[#8c8885] [box-shadow:inset_0px_-2.108433723449707px_0px_0px_#171310,_0px_1.2048193216323853px_6.325301647186279px_0px_rgba(58,_33,_8,_58%)] hover:translate-y-[1px] hover:scale-[0.98] hover:[box-shadow:inset_0px_-1px_0px_0px_#171310,_0px_1px_3px_0px_rgba(58,_33,_8,_40%)] active:translate-y-[2px] active:scale-[0.97] active:[box-shadow:inset_0px_1px_1px_0px_#171310,_0px_1px_2px_0px_rgba(58,_33,_8,_30%)] disabled:shadow-none disabled:hover:translate-y-0 disabled:hover:scale-100"
+                  aria-label={t('companyCard.continue')}
                 >
-                  Continue to Analysis
+                  {t('companyCard.continue')}
                 </button>
               )}
             </div>

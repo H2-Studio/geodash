@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import Image from 'next/image';
 import { authClient } from '@/lib/auth-client';
 import { ArrowLeft } from 'lucide-react';
+import LocalizedLink from '@/components/localized-link';
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
@@ -68,13 +68,13 @@ export default function ForgotPasswordPage() {
               <p className="mt-4 text-sm text-gray-500">
                 Didn't receive the email? Check your spam folder or try again.
               </p>
-              <Link 
+              <LocalizedLink
                 href="/login" 
                 className="mt-6 inline-flex items-center text-sm text-blue-600 hover:text-blue-500"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to login
-              </Link>
+              </LocalizedLink>
             </div>
           </div>
         </div>
@@ -154,10 +154,10 @@ export default function ForgotPasswordPage() {
             </div>
 
             <div className="text-center">
-              <Link href="/login" className="text-sm text-blue-600 hover:text-blue-500 inline-flex items-center">
+              <LocalizedLink href="/login" className="text-sm text-blue-600 hover:text-blue-500 inline-flex items-center">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to login
-              </Link>
+              </LocalizedLink>
             </div>
           </form>
         </div>

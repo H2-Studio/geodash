@@ -14,6 +14,7 @@ import {
   PromptCompletionStatus,
 } from "@/lib/brand-monitor-reducer";
 import { getEnabledProviders } from "@/lib/provider-config";
+import { useTranslations } from "next-intl";
 
 interface AnalysisProgressSectionProps {
   company: Company;
@@ -115,14 +116,16 @@ export function AnalysisProgressSection({
   onStartAnalysis,
   detectServiceType,
 }: AnalysisProgressSectionProps) {
+  const t = useTranslations("brandMonitor");
+
   // Generate default prompts
   const serviceType = detectServiceType(company);
   const currentYear = new Date().getFullYear();
   const defaultPrompts = [
-    `Best ${serviceType}s in ${currentYear}?`,
-    `Top ${serviceType}s for startups?`,
-    `Most popular ${serviceType}s today?`,
-    `Recommended ${serviceType}s for developers?`,
+    t("analysisProgress.best", { type: serviceType, year: currentYear }),
+    t("analysisProgress.topStartups", { type: serviceType }),
+    t("analysisProgress.mostPopular", { type: serviceType }),
+    t("analysisProgress.recommendedForDevs", { type: serviceType }),
   ].filter((_, index) => !removedDefaultPrompts.includes(index));
 
   // Use provided prompts or generate from defaults + custom
@@ -137,12 +140,12 @@ export function AnalysisProgressSection({
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-xl font-semibold">
-                  {analyzing ? "Analysis Progress" : "Prompts"}
+                  {analyzing ? t("analysisProgress.titleProgress") : t("analysisProgress.titlePrompts")}
                 </CardTitle>
                 {/* Competitors list on the right */}
                 {!analyzing && (
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-500">Competitors:</span>
+                    <span className="text-sm text-gray-500">{t("analysisProgress.competitorsLabel")}</span>
                     <div className="flex -space-x-2">
                       {identifiedCompetitors.slice(0, 6).map((comp, idx) => (
                         <div
@@ -185,7 +188,7 @@ export function AnalysisProgressSection({
               {scrapingCompetitors && !analyzing && (
                 <CardDescription className="mt-2 flex items-center justify-center gap-2 text-blue-600">
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Validating competitor data in background...</span>
+                  <span>{t("analysisProgress.validatingCompetitors")}</span>
                 </CardDescription>
               )}
               {analyzing && analysisProgress && (
@@ -227,14 +230,10 @@ export function AnalysisProgressSection({
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
-                                const originalIndex = defaultPrompts.findIndex(
-                                  (p) => p === prompt,
-                                );
-                                if (originalIndex !== -1) {
-                                  onRemoveDefaultPrompt(originalIndex);
-                                }
+                                onRemoveDefaultPrompt(index);
                               }}
                               className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-red-50"
+                              aria-label={t("analysisProgress.removePrompt")}
                             >
                               <Trash2 className="w-4 h-4 text-red-600" />
                             </button>
@@ -246,6 +245,7 @@ export function AnalysisProgressSection({
                                 onRemoveCustomPrompt(prompt);
                               }}
                               className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-red-50"
+                              aria-label={t("analysisProgress.removePrompt")}
                             >
                               <Trash2 className="w-4 h-4 text-red-600" />
                             </button>
@@ -294,7 +294,7 @@ export function AnalysisProgressSection({
                         </div>
                         {isCustom && (
                           <Badge variant="outline" className="text-xs mt-2">
-                            Custom
+                            {t("analysisProgress.customPrompt")}
                           </Badge>
                         )}
                       </div>
@@ -309,9 +309,10 @@ export function AnalysisProgressSection({
                   onClick={onAddPromptClick}
                   disabled={analyzing}
                   className="h-9 rounded-[10px] text-sm font-medium flex items-center transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 bg-[#36322F] text-[#fff] hover:bg-[#4a4542] disabled:bg-[#8c8885] disabled:hover:bg-[#8c8885] [box-shadow:inset_0px_-2.108433723449707px_0px_0px_#171310,_0px_1.2048193216323853px_6.325301647186279px_0px_rgba(58,_33,_8,_58%)] hover:translate-y-[1px] hover:scale-[0.98] hover:[box-shadow:inset_0px_-1px_0px_0px_#171310,_0px_1px_3px_0px_rgba(58,_33,_8,_40%)] active:translate-y-[2px] active:scale-[0.97] active:[box-shadow:inset_0px_1px_1px_0px_#171310,_0px_1px_2px_0px_rgba(58,_33,_8,_30%)] disabled:shadow-none disabled:hover:translate-y-0 disabled:hover:scale-100 px-4 py-1 gap-1"
+                  aria-label={t("analysisProgress.addPrompt")}
                 >
                   <Plus className="h-4 w-4" />
-                  Add Prompt
+                  {t("analysisProgress.addPrompt")}
                 </button>
               </div>
 
@@ -321,14 +322,15 @@ export function AnalysisProgressSection({
                   onClick={onStartAnalysis}
                   disabled={analyzing}
                   className="h-10 px-4 rounded-[10px] text-sm font-medium flex items-center gap-1 transition-all duration-200 bg-blue-500 text-white hover:bg-blue-600 [box-shadow:inset_0px_-2.108433723449707px_0px_0px_#1d4ed8,_0px_1.2048193216323853px_6.325301647186279px_0px_rgba(37,_99,_235,_58%)] hover:translate-y-[1px] hover:scale-[0.98] hover:[box-shadow:inset_0px_-1px_0px_0px_#1d4ed8,_0px_1px_3px_0px_rgba(37,_99,_235,_40%)] active:translate-y-[2px] active:scale-[0.97] active:[box-shadow:inset_0px_1px_1px_0px_#1d4ed8,_0px_1px_2px_0px_rgba(37,_99,_235,_30%)]"
+                  aria-label={t("analysisProgress.start")}
                 >
                   {analyzing ? (
                     <>
                       <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      Analyzing...
+                      {t("analysisProgress.analyzing")}
                     </>
                   ) : (
-                    "Start Analysis"
+                    t("analysisProgress.start")
                   )}
                 </button>
               </div>

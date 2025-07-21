@@ -25,6 +25,7 @@ import {
 } from "@/lib/brand-monitor-utils";
 import { getEnabledProviders } from "@/lib/provider-config";
 import { useSaveBrandAnalysis } from "@/hooks/useBrandAnalyses";
+import { useTranslations } from "next-intl";
 
 import { UrlInputSection } from "./url-input-section";
 import { CompanyCard } from "./company-card";
@@ -60,6 +61,9 @@ export function BrandMonitor({
   selectedAnalysis,
   onSaveAnalysis,
 }: BrandMonitorProps = {}) {
+  
+  const t = useTranslations('brandMonitor');
+
   const [state, dispatch] = useReducer(
     brandMonitorReducer,
     initialBrandMonitorState,
@@ -181,11 +185,11 @@ export function BrandMonitor({
         dispatch({ type: "SET_DYNAMIC_PROMPTS", payload: data.prompts });
       }
     } catch (err: any) {
-      setDynamicPromptsError("Could not generate personalized suggestions.");
+      setDynamicPromptsError(t('errors.couldNotGenerateSuggestions'));
     } finally {
       setDynamicPromptsLoading(false);
     }
-  }, []);
+  }, [t]);
 
   const handleUrlChange = useCallback(
     (newUrl: string) => {
@@ -203,14 +207,13 @@ export function BrandMonitor({
 
   const handleScrape = useCallback(async () => {
     if (!url) {
-      dispatch({ type: "SET_ERROR", payload: "Please enter a URL" });
+      dispatch({ type: "SET_ERROR", payload: t('errors.enterUrl') });
       return;
     }
     if (!validateUrl(url)) {
       dispatch({
         type: "SET_ERROR",
-        payload:
-          "Please enter a valid URL (e.g., example.com or https://example.com)",
+        payload: t('errors.validUrlExample'),
       });
       dispatch({ type: "SET_URL_VALID", payload: false });
       return;
@@ -218,8 +221,7 @@ export function BrandMonitor({
     if (creditsAvailable < 1) {
       dispatch({
         type: "SET_ERROR",
-        payload:
-          "Insufficient credits. You need at least 1 credit to analyze a URL.",
+        payload: t('errors.insufficientCredits'),
       });
       return;
     }
@@ -257,16 +259,16 @@ export function BrandMonitor({
         }, 50);
       }, 500);
     } catch (error: any) {
-      let errorMessage = "Failed to extract company information";
+      let errorMessage = t('errors.failedToExtract');
       if (error instanceof ClientApiError)
         errorMessage = error.getUserMessage();
       else if (error.message)
-        errorMessage = `Failed to extract company information: ${error.message}`;
+        errorMessage = `${t('errors.failedToExtract')}: ${error.message}`;
       dispatch({ type: "SET_ERROR", payload: errorMessage });
     } finally {
       dispatch({ type: "SET_LOADING", payload: false });
     }
-  }, [url, creditsAvailable, onCreditsUpdate, generateDynamicPrompts]);
+  }, [url, creditsAvailable, onCreditsUpdate, generateDynamicPrompts, t]);
 
   const handlePrepareAnalysis = useCallback(async () => {
     if (!company) return;
@@ -339,7 +341,7 @@ export function BrandMonitor({
     if (creditsAvailable < CREDITS_PER_BRAND_ANALYSIS) {
       dispatch({
         type: "SET_ERROR",
-        payload: `Insufficient credits. You need at least ${CREDITS_PER_BRAND_ANALYSIS} credits to run an analysis.`,
+        payload: t('errors.insufficientCreditsAnalysis', { credits: CREDITS_PER_BRAND_ANALYSIS }),
       });
       return;
     }
@@ -349,10 +351,10 @@ export function BrandMonitor({
         ? state.dynamicPrompts.map((p) => p.trim())
         : [
             ...[
-              `Best ${detectServiceType(company)}s in ${new Date().getFullYear()}?`,
-              `Top ${detectServiceType(company)}s for startups?`,
-              `Most popular ${detectServiceType(company)}s today?`,
-              `Recommended ${detectServiceType(company)}s for developers?`,
+              t('defaultPrompts.best', { type: detectServiceType(company), year: new Date().getFullYear() }),
+              t('defaultPrompts.topStartups', { type: detectServiceType(company) }),
+              t('defaultPrompts.popular', { type: detectServiceType(company) }),
+              t('defaultPrompts.recommended', { type: detectServiceType(company) }),
             ].filter(
               (_, index) => !state.removedDefaultPrompts.includes(index),
             ),
@@ -365,7 +367,7 @@ export function BrandMonitor({
       payload: {
         stage: "initializing",
         progress: 0,
-        message: "Starting analysis...",
+        message: t('progress.startingAnalysis'),
         competitors: [],
         prompts: [],
         partialResults: [],
@@ -405,6 +407,7 @@ export function BrandMonitor({
     state.customPrompts,
     startSSEConnection,
     identifiedCompetitors,
+    t,
   ]);
 
   const handleRestart = useCallback(() => {
@@ -413,13 +416,14 @@ export function BrandMonitor({
     setIsLoadingExistingAnalysis(false);
   }, []);
 
+  // Pour Info: defaultPrompts localisés
   const serviceType = detectServiceType(company);
   const currentYear = new Date().getFullYear();
   const defaultPrompts = [
-    `Best ${serviceType}s in ${currentYear}?`,
-    `Top ${serviceType}s for startups?`,
-    `Most popular ${serviceType}s today?`,
-    `Recommended ${serviceType}s for developers?`,
+    t('defaultPrompts.best', { type: serviceType, year: currentYear }),
+    t('defaultPrompts.topStartups', { type: serviceType }),
+    t('defaultPrompts.popular', { type: serviceType }),
+    t('defaultPrompts.recommended', { type: serviceType }),
   ].filter((_, index) => !removedDefaultPrompts.includes(index));
   const allPrompts = [...defaultPrompts, ...customPrompts];
   const promptsToShow =
@@ -486,14 +490,14 @@ export function BrandMonitor({
             onClick={() => generateDynamicPrompts(company)}
             disabled={dynamicPromptsLoading}
             className="ml-2 p-2 rounded hover:bg-gray-100"
-            title="Randomize prompts"
+            title={t('actions.randomizePrompts')}
           >
             <ShuffleIcon className="w-4 h-4" />
           </button>
           {dynamicPromptsLoading ? (
             <div className="flex flex-col items-center justify-center py-8">
               <span className="text-gray-500 text-md mb-2">
-                Generating personalized suggestions...
+                {t('loading.generatingSuggestions')}
               </span>
             </div>
           ) : (
@@ -561,11 +565,10 @@ export function BrandMonitor({
                         <div className="flex justify-between items-center">
                           <div>
                             <CardTitle className="text-xl font-semibold">
-                              Comparison Matrix
+                              {t("matrix.title")}
                             </CardTitle>
                             <CardDescription className="text-sm text-gray-600 mt-1">
-                              Compare visibility scores across different AI
-                              providers
+                              {t("matrix.description")}
                             </CardDescription>
                           </div>
                           <div className="text-right">
@@ -573,7 +576,7 @@ export function BrandMonitor({
                               {brandData.visibilityScore}%
                             </p>
                             <p className="text-xs text-gray-500 mt-1">
-                              Average Score
+                              {t("matrix.averageScore")}
                             </p>
                           </div>
                         </div>
@@ -587,10 +590,9 @@ export function BrandMonitor({
                           />
                         ) : (
                           <div className="text-center py-8 text-gray-500">
-                            <p>No comparison data available</p>
+                            <p>{t("matrix.noData")}</p>
                             <p className="text-sm mt-2">
-                              Please ensure AI providers are configured and the
-                              analysis has completed.
+                              {t("matrix.noDataDescription")}
                             </p>
                           </div>
                         )}
@@ -602,7 +604,7 @@ export function BrandMonitor({
                       <div id="provider-rankings" className="h-full">
                         <ProviderRankingsTabs
                           providerRankings={analysis.providerRankings}
-                          brandName={company?.name || "Your Brand"}
+                          brandName={company?.name || t('brandNameDefault')}
                           shareOfVoice={brandData.shareOfVoice}
                           averagePosition={Math.round(
                             brandData.averagePosition,
@@ -618,10 +620,10 @@ export function BrandMonitor({
                         <div className="flex justify-between items-center">
                           <div>
                             <CardTitle className="text-xl font-semibold">
-                              Prompts & Responses
+                              {t("promptsResponses.title")}
                             </CardTitle>
                             <CardDescription className="text-sm text-gray-600 mt-1">
-                              AI responses to your brand queries
+                              {t("promptsResponses.description")}
                             </CardDescription>
                           </div>
                           <div className="text-right">
@@ -629,7 +631,7 @@ export function BrandMonitor({
                               {analysis.prompts.length}
                             </p>
                             <p className="text-xs text-gray-500 mt-1">
-                              Total Prompts
+                              {t("promptsResponses.totalPrompts")}
                             </p>
                           </div>
                         </div>
@@ -724,9 +726,6 @@ export function BrandMonitor({
               type: "SET_NEW_COMPETITOR",
               payload: { name: "", url: "" },
             });
-            if (newCompetitor.url) {
-              // Optionally, batch scrape competitors here if needed
-            }
           }
         }}
         onClose={() => {

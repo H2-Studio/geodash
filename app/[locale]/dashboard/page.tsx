@@ -8,19 +8,21 @@ import { Lock, CheckCircle, AlertCircle, Loader2, User, Mail, Phone, Edit2, Save
 import { Button } from '@/components/ui/button';
 import ProductChangeDialog from '@/components/autumn/product-change-dialog';
 import { useProfile, useUpdateProfile, useSettings, useUpdateSettings } from '@/hooks/useProfile';
+import { useTranslations } from 'next-intl';
 
 // Separate component that uses Autumn hooks
 function DashboardContent({ session }: { session: any }) {
+  const t = useTranslations('dashboard');
   const { customer, attach } = useCustomer();
   const { products } = usePricingTable();
   const [loadingProductId, setLoadingProductId] = useState<string | null>(null);
-  
+
   // Profile and settings hooks
   const { data: profileData } = useProfile();
   const updateProfile = useUpdateProfile();
   const { data: settings } = useSettings();
   const updateSettings = useUpdateSettings();
-  
+
   // Profile edit state
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [profileForm, setProfileForm] = useState({
@@ -62,12 +64,12 @@ function DashboardContent({ session }: { session: any }) {
   // Get current user's products and features
   const userProducts = customer?.products || [];
   const userFeatures = customer?.features || {};
-  
+
   // Find the actual active product (not scheduled)
-  const activeProduct = userProducts.find(p => 
+  const activeProduct = userProducts.find(p =>
     p.status === 'active' || p.status === 'trialing' || p.status === 'past_due'
   );
-  const scheduledProduct = userProducts.find(p => 
+  const scheduledProduct = userProducts.find(p =>
     p.status === 'scheduled' || (p.started_at && new Date(p.started_at) > new Date())
   );
 
@@ -89,12 +91,12 @@ function DashboardContent({ session }: { session: any }) {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
+        <h1 className="text-3xl font-bold mb-8">{t('dashboardTitle')}</h1>
 
         {/* Profile Section */}
         <div className="bg-white rounded-lg shadow p-6 mb-8">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold">Profile Information</h2>
+            <h2 className="text-xl font-semibold">{t('profileInfo')}</h2>
             {!isEditingProfile ? (
               <Button
                 onClick={() => setIsEditingProfile(true)}
@@ -102,7 +104,7 @@ function DashboardContent({ session }: { session: any }) {
                 className="bg-black text-white hover:bg-gray-800"
               >
                 <Edit2 className="h-4 w-4 mr-2" />
-                Edit Profile
+                {t('editProfile')}
               </Button>
             ) : (
               <div className="flex gap-2">
@@ -113,7 +115,7 @@ function DashboardContent({ session }: { session: any }) {
                   disabled={updateProfile.isPending}
                 >
                   <Save className="h-4 w-4 mr-2" />
-                  Save
+                  {t('save')}
                 </Button>
                 <Button
                   onClick={handleCancelEdit}
@@ -122,25 +124,25 @@ function DashboardContent({ session }: { session: any }) {
                   disabled={updateProfile.isPending}
                 >
                   <X className="h-4 w-4 mr-2" />
-                  Cancel
+                  {t('cancel')}
                 </Button>
               </div>
             )}
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 <Mail className="inline-block h-4 w-4 mr-1" />
-                Email
+                {t('email')}
               </label>
               <p className="text-gray-900">{session.user?.email}</p>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 <User className="inline-block h-4 w-4 mr-1" />
-                Display Name
+                {t('displayName')}
               </label>
               {isEditingProfile ? (
                 <input
@@ -148,19 +150,19 @@ function DashboardContent({ session }: { session: any }) {
                   value={profileForm.displayName}
                   onChange={(e) => setProfileForm({ ...profileForm, displayName: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter your display name"
+                  placeholder={t('displayNamePlaceholder')}
                 />
               ) : (
                 <p className="text-gray-900">
-                  {profileData?.profile?.displayName || 'Not set'}
+                  {profileData?.profile?.displayName || t('notSet')}
                 </p>
               )}
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 <Phone className="inline-block h-4 w-4 mr-1" />
-                Phone
+                {t('phone')}
               </label>
               {isEditingProfile ? (
                 <input
@@ -168,18 +170,18 @@ function DashboardContent({ session }: { session: any }) {
                   value={profileForm.phone}
                   onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter your phone number"
+                  placeholder={t('phonePlaceholder')}
                 />
               ) : (
                 <p className="text-gray-900">
-                  {profileData?.profile?.phone || 'Not set'}
+                  {profileData?.profile?.phone || t('notSet')}
                 </p>
               )}
             </div>
-            
+
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Bio
+                {t('bio')}
               </label>
               {isEditingProfile ? (
                 <textarea
@@ -187,11 +189,11 @@ function DashboardContent({ session }: { session: any }) {
                   onChange={(e) => setProfileForm({ ...profileForm, bio: e.target.value })}
                   className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   rows={3}
-                  placeholder="Tell us about yourself"
+                  placeholder={t('bioPlaceholder')}
                 />
               ) : (
                 <p className="text-gray-900">
-                  {profileData?.profile?.bio || 'Not set'}
+                  {profileData?.profile?.bio || t('notSet')}
                 </p>
               )}
             </div>
@@ -200,12 +202,12 @@ function DashboardContent({ session }: { session: any }) {
 
         {/* Settings Section */}
         <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4">Settings</h2>
+          <h2 className="text-xl font-semibold mb-4">{t('settings')}</h2>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium">Email Notifications</p>
-                <p className="text-sm text-gray-600">Receive email notifications for important updates</p>
+                <p className="font-medium">{t('emailNotif')}</p>
+                <p className="text-sm text-gray-600">{t('emailNotifDesc')}</p>
               </div>
               <button
                 onClick={() => handleSettingToggle('emailNotifications', !settings?.emailNotifications)}
@@ -221,11 +223,11 @@ function DashboardContent({ session }: { session: any }) {
                 />
               </button>
             </div>
-            
+
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium">Marketing Emails</p>
-                <p className="text-sm text-gray-600">Receive emails about new features and offers</p>
+                <p className="font-medium">{t('marketingEmails')}</p>
+                <p className="text-sm text-gray-600">{t('marketingEmailsDesc')}</p>
               </div>
               <button
                 onClick={() => handleSettingToggle('marketingEmails', !settings?.marketingEmails)}
@@ -246,14 +248,14 @@ function DashboardContent({ session }: { session: any }) {
 
         {/* User Info */}
         <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4">Account Information</h2>
+          <h2 className="text-xl font-semibold mb-4">{t('accountInfo')}</h2>
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <p className="text-sm text-gray-600">Email</p>
+              <p className="text-sm text-gray-600">{t('email')}</p>
               <p className="font-medium">{session.user?.email}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-600">Current Plan</p>
+              <p className="text-sm text-gray-600">{t('currentPlan')}</p>
               <p className="font-medium flex items-center">
                 {activeProduct ? (
                   <>
@@ -261,14 +263,17 @@ function DashboardContent({ session }: { session: any }) {
                     {activeProduct.name || activeProduct.id}
                     {scheduledProduct && (
                       <span className="ml-2 text-sm text-gray-500">
-                        (Changing to {scheduledProduct.name || scheduledProduct.id} on {new Date(scheduledProduct.started_at || scheduledProduct.current_period_end).toLocaleDateString()})
+                        ({t('changingToOn', {
+                          plan: scheduledProduct.name || scheduledProduct.id,
+                          date: new Date(scheduledProduct.started_at || scheduledProduct.current_period_end).toLocaleDateString(),
+                        })})
                       </span>
                     )}
                   </>
                 ) : (
                   <>
                     <AlertCircle className="h-4 w-4 text-yellow-500 mr-1" />
-                    Free Plan
+                    {t('freePlan')}
                   </>
                 )}
               </p>
@@ -278,7 +283,7 @@ function DashboardContent({ session }: { session: any }) {
 
         {/* Usage Stats */}
         <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4">Usage Statistics</h2>
+          <h2 className="text-xl font-semibold mb-4">{t('usageStats')}</h2>
           {Object.keys(userFeatures).length > 0 ? (
             <div className="space-y-4">
               {Object.entries(userFeatures).map(([featureId, feature]) => (
@@ -286,34 +291,46 @@ function DashboardContent({ session }: { session: any }) {
                   <div className="mb-4">
                     <h3 className="font-medium mb-2 capitalize">{featureId.replace(/_/g, ' ')}</h3>
                     <div className="flex justify-between text-sm mb-1">
-                      <span>Used</span>
-                      <span>{feature.usage || 0} / {feature.included_usage || feature.balance + (feature.usage || 0)}</span>
+                      <span>{t('used')}</span>
+                      <span>
+                        {feature.usage || 0} /{' '}
+                        {feature.included_usage || feature.balance + (feature.usage || 0)}
+                      </span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
                         className="bg-blue-500 h-2 rounded-full transition-all"
                         style={{
-                          width: `${Math.min(((feature.usage || 0) / (feature.included_usage || feature.balance + (feature.usage || 0) || 1)) * 100, 100)}%`
+                          width: `${Math.min(
+                            ((feature.usage || 0) /
+                              (feature.included_usage ||
+                                feature.balance + (feature.usage || 0) ||
+                                1)) *
+                              100,
+                            100
+                          )}%`
                         }}
                       />
                     </div>
                   </div>
                   {feature.next_reset_at && (
                     <p className="text-sm text-gray-600">
-                      Resets on: {new Date(feature.next_reset_at).toLocaleDateString()}
+                      {t('resetsOn', {
+                        date: new Date(feature.next_reset_at).toLocaleDateString(),
+                      })}
                     </p>
                   )}
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-gray-500">No usage data available</p>
+            <p className="text-gray-500">{t('noUsage')}</p>
           )}
         </div>
 
         {/* Available Plans */}
         <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-4">Available Plans</h2>
+          <h2 className="text-xl font-semibold mb-4">{t('availablePlans')}</h2>
           {!products ? (
             <div className="flex justify-center py-8">
               <Loader2 className="h-6 w-6 animate-spin text-gray-400" />
@@ -323,8 +340,10 @@ function DashboardContent({ session }: { session: any }) {
               {products.map((product) => {
                 const isCurrentPlan = activeProduct?.id === product.id;
                 const isScheduledPlan = scheduledProduct?.id === product.id;
-                const features = product.properties?.is_free ? product.items : product.items?.slice(1) || [];
-                
+                const features = product.properties?.is_free
+                  ? product.items
+                  : product.items?.slice(1) || [];
+
                 return (
                   <div key={product.id} className="border rounded-lg p-4">
                     <div className="flex justify-between items-start">
@@ -332,14 +351,20 @@ function DashboardContent({ session }: { session: any }) {
                         <h3 className="font-medium text-lg">
                           {product.display?.name || product.name}
                           {isCurrentPlan && (
-                            <span className="ml-2 text-sm text-green-600">(Current Plan)</span>
+                            <span className="ml-2 text-sm text-green-600">
+                              ({t('currentPlan')})
+                            </span>
                           )}
                           {isScheduledPlan && (
-                            <span className="ml-2 text-sm text-blue-600">(Scheduled)</span>
+                            <span className="ml-2 text-sm text-blue-600">
+                              ({t('scheduled')})
+                            </span>
                           )}
                         </h3>
                         {product.display?.description && (
-                          <p className="text-sm text-gray-600 mt-1">{product.display.description}</p>
+                          <p className="text-sm text-gray-600 mt-1">
+                            {product.display.description}
+                          </p>
                         )}
                         <ul className="mt-3 space-y-1">
                           {features.slice(0, 3).map((item, index) => (
@@ -357,8 +382,8 @@ function DashboardContent({ session }: { session: any }) {
                         </ul>
                       </div>
                       {!isCurrentPlan && !isScheduledPlan && (
-                        <Button 
-                          onClick={() => handleUpgrade(product.id)} 
+                        <Button
+                          onClick={() => handleUpgrade(product.id)}
                           size="sm"
                           variant="outline"
                           disabled={loadingProductId !== null}
@@ -366,16 +391,19 @@ function DashboardContent({ session }: { session: any }) {
                           {loadingProductId === product.id ? (
                             <>
                               <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                              Loading...
+                              {t('loading')}
                             </>
-                          ) : (
-                            product.properties?.is_free ? 'Downgrade' : 'Upgrade'
-                          )}
+                          ) : product.properties?.is_free ? t('downgrade') : t('upgrade')}
                         </Button>
                       )}
                       {isScheduledPlan && (
                         <span className="text-sm text-gray-500">
-                          Starts {new Date(scheduledProduct.started_at || scheduledProduct.current_period_end).toLocaleDateString()}
+                          {t('startsOn', {
+                            date: new Date(
+                              scheduledProduct.started_at ||
+                                scheduledProduct.current_period_end
+                            ).toLocaleDateString(),
+                          })}
                         </span>
                       )}
                     </div>
@@ -393,6 +421,7 @@ function DashboardContent({ session }: { session: any }) {
 export default function DashboardPage() {
   const { data: session, isPending } = useSession();
   const router = useRouter();
+  const t = useTranslations('dashboard');
 
   useEffect(() => {
     if (!isPending && !session) {
@@ -405,7 +434,7 @@ export default function DashboardPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <p className="text-gray-600">{t('loading')}</p>
         </div>
       </div>
     );
