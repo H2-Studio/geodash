@@ -47,6 +47,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ShuffleIcon } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 interface BrandMonitorProps {
   creditsAvailable?: number;
@@ -63,7 +64,9 @@ export function BrandMonitor({
 }: BrandMonitorProps = {}) {
   
   const t = useTranslations('brandMonitor');
-
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1] || "en";
+  
   const [state, dispatch] = useReducer(
     brandMonitorReducer,
     initialBrandMonitorState,
@@ -177,6 +180,7 @@ export function BrandMonitor({
           description: companyObj.description || "",
           products: companyObj.scrapedData?.products?.join(", ") || "",
           competitors: companyObj.scrapedData?.competitors || [],
+          locale,
         }),
       });
       if (!res.ok) throw new Error("Failed to generate dynamic prompts");
