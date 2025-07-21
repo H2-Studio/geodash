@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       throw new ExternalServiceError('Unable to verify credits. Please try again', 'autumn');
     }
 
-    const { url, maxAge } = await request.json();
+    const { url, maxAge, locale = 'en' } = await request.json();
 
     if (!url) {
       throw new ValidationError('Invalid request', {
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
       // Continue even if tracking fails - we don't want to block the user
     }
 
-    const company = await scrapeCompanyInfo(normalizedUrl, maxAge);
+    const company = await scrapeCompanyInfo(normalizedUrl, locale, maxAge);
 
     return NextResponse.json({ company });
   } catch (error) {
