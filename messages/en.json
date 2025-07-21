@@ -354,5 +354,20 @@
     "placeholder": "Example: What is the best shoe brand?",
     "add": "Add Prompt",
     "cancel": "Cancel"
+  },
+  "metadata": {
+    "title": "GEODash – Brand Visibility for AI and LLMs",
+    "description": "Monitor your brand’s visibility across AI models and LLMs with GEODash."
+  },
+  "analysis": {
+    "starting": "Starting analysis for {company}{withWebSearch}",
+    "withWebSearch": " with web search",
+    "identifyingCompetitors": "Identifying competitors...",
+    "generatingPrompts": "Generating analysis prompts...",
+    "startingAIAnalysis": "Starting AI analysis{withWebSearch}...",
+    "completedAnalyses": "Completed {completed} of {total} analyses",
+    "calculatingScores": "Calculating brand visibility scores...",
+    "scoringComplete": "Scoring complete",
+    "analysisComplete": "Analysis complete!"
   }
 }

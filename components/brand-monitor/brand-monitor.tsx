@@ -398,6 +398,7 @@ export function BrandMonitor({
           company,
           prompts: normalizedPrompts,
           competitors: identifiedCompetitors,
+          locale,
         }),
       });
     } finally {

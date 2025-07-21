@@ -4,8 +4,7 @@ import "@/app/globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Providers } from "@/components/providers";
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from "next-intl";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,10 +16,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "GEODash – Brand Visibility for AI and LLMs",
-  description: "Monitor your brand’s visibility across AI models and LLMs with GEODash.",
-};
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const messages = (await import(`@/messages/${params.locale}.json`)).default;
+
+  return {
+    title: messages.metadata.title,
+    description: messages.metadata.description,
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -29,22 +32,17 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }>) {
-
-  const { locale } = await params;
+  const { locale } = params;
   const messages = (await import(`@/messages/${locale}.json`)).default;
 
   return (
-    <html lang={locale}> 
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <NextIntlClientProvider locale={locale} messages={messages}> 
+    <html lang={locale}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
             <div className="flex flex-col min-h-screen">
               <Navbar locale={locale} />
-              <main className="flex-grow">
-                {children}
-              </main>
+              <main className="flex-grow">{children}</main>
               <Footer />
             </div>
           </Providers>

@@ -354,5 +354,20 @@
     "placeholder": "Exemple : Quel est la meilleure marque de chaussures ?",
     "add": "Ajouter la question",
     "cancel": "Annuler"
+  },
+  "metadata": {
+    "title": "GEODash – Visibilité de Marque pour l’IA et les LLM",
+    "description": "Surveillez la visibilité de votre marque sur les modèles IA et LLM grâce à GEODash."
+  },
+  "analysis": {
+    "starting": "Démarrage de l'analyse pour {company}{withWebSearch}",
+    "withWebSearch": " avec recherche web",
+    "identifyingCompetitors": "Identification des concurrents...",
+    "generatingPrompts": "Génération des prompts d'analyse...",
+    "startingAIAnalysis": "Démarrage de l'analyse IA{withWebSearch}...",
+    "completedAnalyses": "{completed} analyses sur {total} terminées",
+    "calculatingScores": "Calcul des scores de visibilité de marque...",
+    "scoringComplete": "Calcul terminé",
+    "analysisComplete": "Analyse terminée !"
   }
 }

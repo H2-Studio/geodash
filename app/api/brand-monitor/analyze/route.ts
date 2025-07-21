@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
       throw new ExternalServiceError('Unable to process credit deduction. Please try again', 'autumn');
     }
 
-    const { company, prompts: customPrompts, competitors: userSelectedCompetitors, useWebSearch = false } = await request.json();
+    const { company, prompts: customPrompts, competitors: userSelectedCompetitors, useWebSearch = false , locale} = await request.json();
 
     if (!company || !company.name) {
       throw new ValidationError(ERROR_MESSAGES.COMPANY_INFO_REQUIRED, {
@@ -143,7 +143,8 @@ export async function POST(request: NextRequest) {
           customPrompts,
           userSelectedCompetitors,
           useWebSearch,
-          sendEvent
+          sendEvent,
+          locale
         });
 
         // Send final complete event with all data

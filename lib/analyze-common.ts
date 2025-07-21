@@ -9,6 +9,7 @@ export interface AnalysisConfig {
   userSelectedCompetitors?: { name: string }[];
   useWebSearch?: boolean;
   sendEvent: (event: SSEEvent) => Promise<void>;
+  locale: string; 
 }
 
 export interface AnalysisResult {
@@ -24,34 +25,60 @@ export interface AnalysisResult {
   webSearchUsed?: boolean;
 }
 
-/**
- * Common analysis logic extracted from both API routes
- */
+// Fonction utilitaire pour charger les messages
+function getMessages(locale: string) {
+  try {
+    // Dynamique selon le contexte, adapte si besoin
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    return require(`@/messages/${locale}.json`);
+  } catch (e) {
+    // fallback en anglais si non trouvé
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    return require(`@/messages/en.json`);
+  }
+}
+
+// Fonction utilitaire pour la traduction/interpolation
+function t(messages: any, key: string, params: Record<string, any> = {}) {
+  // Récupération par clé imbriquée (ex: "analysis.generatingPrompts")
+  let str = key.split('.').reduce((acc, cur) => acc?.[cur], messages) || key;
+  Object.keys(params).forEach(param => {
+    str = str.replace(`{${param}}`, params[param]);
+  });
+  return str;
+}
+
 export async function performAnalysis({
   company,
   customPrompts,
   userSelectedCompetitors,
   useWebSearch = false,
-  sendEvent
+  sendEvent,
+  locale
 }: AnalysisConfig): Promise<AnalysisResult> {
-  // Send start event
+  const messages = getMessages(locale);
+
+  // 1. Analyse start
   await sendEvent({
     type: 'start',
     stage: 'initializing',
     data: { 
-      message: `Starting analysis for ${company.name}${useWebSearch ? ' with web search' : ''}` 
+      message: t(messages, "analysis.starting", {
+        company: company.name,
+        withWebSearch: useWebSearch ? t(messages, "analysis.withWebSearch") : ""
+      })
     } as ProgressData,
     timestamp: new Date()
   });
 
-  // Stage 1: Identify competitors
+  // 2. Identify competitors
   await sendEvent({
     type: 'stage',
     stage: 'identifying-competitors',
     data: { 
       stage: 'identifying-competitors',
       progress: 0,
-      message: 'Identifying competitors...'
+      message: t(messages, "analysis.identifyingCompetitors")
     } as ProgressData,
     timestamp: new Date()
   });
@@ -60,9 +87,6 @@ export async function performAnalysis({
   let competitors: string[];
   if (userSelectedCompetitors && userSelectedCompetitors.length > 0) {
     competitors = userSelectedCompetitors.map(c => c.name);
-    console.log('Using user-selected competitors:', competitors);
-    
-    // Send competitor events for UI
     for (let i = 0; i < competitors.length; i++) {
       await sendEvent({
         type: 'competitor-found',
@@ -79,23 +103,20 @@ export async function performAnalysis({
     competitors = await identifyCompetitors(company, sendEvent);
   }
 
-  // Stage 2: Generate prompts
-  // Skip the 100% progress for competitors and go straight to the next stage
+  // 3. Generate prompts
   await sendEvent({
     type: 'stage',
     stage: 'generating-prompts',
     data: {
       stage: 'generating-prompts',
       progress: 0,
-      message: 'Generating analysis prompts...'
+      message: t(messages, "analysis.generatingPrompts")
     } as ProgressData,
     timestamp: new Date()
   });
 
-  // Use custom prompts if provided, otherwise generate them
   let analysisPrompts;
   if (customPrompts && customPrompts.length > 0) {
-    // Convert string prompts to BrandPrompt objects
     analysisPrompts = customPrompts.map((prompt: string, index: number) => ({
       id: `custom-${index}`,
       prompt,
@@ -103,11 +124,10 @@ export async function performAnalysis({
     }));
   } else {
     const prompts = await generatePromptsForCompany(company, competitors);
-    // Note: Changed from 8 to 4 to match UI - this should be configurable
-    analysisPrompts = prompts.slice(0, 4);
+    analysisPrompts = prompts.slice(0, 4); // ou configurable selon besoin
   }
 
-  // Send prompt generated events
+  // Prompts events
   for (let i = 0; i < analysisPrompts.length; i++) {
     await sendEvent({
       type: 'prompt-generated',
@@ -122,15 +142,16 @@ export async function performAnalysis({
     });
   }
 
-  // Stage 3: Analyze with AI providers
-  // Skip the 100% progress for prompts and go straight to the next stage
+  // 4. Analyze with AI providers
   await sendEvent({
     type: 'stage',
     stage: 'analyzing-prompts',
     data: {
       stage: 'analyzing-prompts',
       progress: 0,
-      message: `Starting AI analysis${useWebSearch ? ' with web search' : ''}...`
+      message: t(messages, "analysis.startingAIAnalysis", {
+        withWebSearch: useWebSearch ? t(messages, "analysis.withWebSearch") : ""
+      })
     } as ProgressData,
     timestamp: new Date()
   });
@@ -138,42 +159,21 @@ export async function performAnalysis({
   const responses: AIResponse[] = [];
   const errors: string[] = [];
   
-  // Filter providers based on available API keys
   const availableProviders = getAvailableProviders();
-  
-  console.log('Available providers for analysis:', availableProviders.map(p => p.name));
-  console.log('Available provider details:', availableProviders.map(p => ({ name: p.name, model: p.model })));
-  console.log('Environment variables:', {
-    hasOpenAI: !!process.env.OPENAI_API_KEY,
-    hasAnthropic: !!process.env.ANTHROPIC_API_KEY,
-    hasGoogle: !!process.env.GOOGLE_GENERATIVE_AI_API_KEY,
-    hasPerplexity: !!process.env.PERPLEXITY_API_KEY,
-    hasXai: !!process.env.XAI_API_KEY
-  });
-  console.log('Web search enabled:', useWebSearch);
-  console.log('Number of prompts:', analysisPrompts.length);
-  console.log('Number of available providers:', availableProviders.length);
-  
-  const totalAnalyses = analysisPrompts.length * availableProviders.length;
-  let completedAnalyses = 0;
-  console.log('Total analyses to perform:', totalAnalyses);
-
-  // Check if we should use mock mode (no API keys configured)
   const useMockMode = process.env.USE_MOCK_MODE === 'true' || availableProviders.length === 0;
 
-  // Process prompts in parallel batches of 3
   const BATCH_SIZE = 3;
-  
+  const totalAnalyses = analysisPrompts.length * availableProviders.length;
+  let completedAnalyses = 0;
+
   for (let batchStart = 0; batchStart < analysisPrompts.length; batchStart += BATCH_SIZE) {
     const batchEnd = Math.min(batchStart + BATCH_SIZE, analysisPrompts.length);
     const batchPrompts = analysisPrompts.slice(batchStart, batchEnd);
-    
-    // Create all analysis promises for this batch
+
     const batchPromises = batchPrompts.flatMap((prompt, batchIndex) => 
       availableProviders.map(async (provider) => {
         const promptIndex = batchStart + batchIndex;
-        
-        // Send analysis start event
+
         await sendEvent({
           type: 'analysis-start',
           stage: 'analyzing-prompts',
@@ -190,32 +190,17 @@ export async function performAnalysis({
         });
 
         try {
-          // Debug log for each provider attempt
-          console.log(`Attempting analysis with provider: ${provider.name} for prompt: "${prompt.prompt.substring(0, 50)}..."`);
-          
-          // Choose the appropriate analysis function based on useWebSearch
           const analyzeFunction = useWebSearch ? analyzePromptWithProviderEnhanced : analyzePromptWithProvider;
-          
           const response = await analyzeFunction(
             prompt.prompt, 
             provider.name, 
             company.name, 
             competitors,
             useMockMode,
-            ...(useWebSearch ? [true] : []) // Pass web search flag only for enhanced version
+            ...(useWebSearch ? [true] : []) // web search flag
           );
-          
-          console.log(`Analysis completed for ${provider.name}:`, {
-            hasResponse: !!response,
-            provider: response?.provider,
-            brandMentioned: response?.brandMentioned
-          });
-          
-          // Skip if provider returned null (not configured)
+
           if (response === null) {
-            console.log(`Skipping ${provider.name} - not configured`);
-            
-            // Send analysis complete event with skipped status
             await sendEvent({
               type: 'analysis-complete',
               stage: 'analyzing-prompts',
@@ -230,18 +215,15 @@ export async function performAnalysis({
               } as AnalysisProgressData,
               timestamp: new Date()
             });
-            
-            return; // Return early instead of continue
+            return;
           }
-          
-          // If using mock mode, add a small delay for visual effect
+
           if (useMockMode) {
             await new Promise(resolve => setTimeout(resolve, Math.random() * 1000 + 500));
           }
-          
+
           responses.push(response);
 
-          // Send partial result
           await sendEvent({
             type: 'partial-result',
             stage: 'analyzing-prompts',
@@ -258,7 +240,6 @@ export async function performAnalysis({
             timestamp: new Date()
           });
 
-          // Send analysis complete event
           await sendEvent({
             type: 'analysis-complete',
             stage: 'analyzing-prompts',
@@ -275,10 +256,8 @@ export async function performAnalysis({
           });
 
         } catch (error) {
-          console.error(`Error with ${provider.name} for prompt "${prompt.prompt}":`, error);
           errors.push(`${provider.name}: ${error instanceof Error ? error.message : 'Unknown error'}`);
-          
-          // Send analysis failed event
+
           await sendEvent({
             type: 'analysis-complete',
             stage: 'analyzing-prompts',
@@ -297,40 +276,40 @@ export async function performAnalysis({
 
         completedAnalyses++;
         const progress = Math.round((completedAnalyses / totalAnalyses) * 100);
-        
+
         await sendEvent({
           type: 'progress',
           stage: 'analyzing-prompts',
           data: {
             stage: 'analyzing-prompts',
             progress,
-            message: `Completed ${completedAnalyses} of ${totalAnalyses} analyses`
+            message: t(messages, "analysis.completedAnalyses", {
+              completed: completedAnalyses,
+              total: totalAnalyses
+            })
           } as ProgressData,
           timestamp: new Date()
         });
       })
     );
-    
-    // Wait for all promises in this batch to complete
+
     await Promise.all(batchPromises);
   }
 
-  // Stage 4: Calculate scores
+  // 5. Calculate scores
   await sendEvent({
     type: 'stage',
     stage: 'calculating-scores',
     data: {
       stage: 'calculating-scores',
       progress: 0,
-      message: 'Calculating brand visibility scores...'
+      message: t(messages, "analysis.calculatingScores")
     } as ProgressData,
     timestamp: new Date()
   });
 
-  // Analyze competitors from all responses
   const competitorRankings = await analyzeCompetitors(company, responses, competitors);
 
-  // Send scoring progress for each competitor
   for (let i = 0; i < competitorRankings.length; i++) {
     await sendEvent({
       type: 'scoring-start',
@@ -345,14 +324,12 @@ export async function performAnalysis({
     });
   }
 
-  // Analyze competitors by provider
   const { providerRankings, providerComparison } = await analyzeCompetitorsByProvider(
     company, 
     responses, 
     competitors
   );
 
-  // Calculate final scores
   const scores = calculateBrandScores(responses, company.name, competitorRankings);
 
   await sendEvent({
@@ -361,19 +338,19 @@ export async function performAnalysis({
     data: {
       stage: 'calculating-scores',
       progress: 100,
-      message: 'Scoring complete'
+      message: t(messages, "analysis.scoringComplete")
     } as ProgressData,
     timestamp: new Date()
   });
 
-  // Stage 5: Finalize
+  // 6. Finalize
   await sendEvent({
     type: 'stage',
     stage: 'finalizing',
     data: {
       stage: 'finalizing',
       progress: 100,
-      message: 'Analysis complete!'
+      message: t(messages, "analysis.analysisComplete")
     } as ProgressData,
     timestamp: new Date()
   });
@@ -392,12 +369,8 @@ export async function performAnalysis({
   };
 }
 
-/**
- * Get available providers based on configured API keys
- */
 export function getAvailableProviders() {
   const configuredProviders = getConfiguredProviders();
-  // Map to the format expected by the rest of the code
   return configuredProviders.map(provider => ({
     name: provider.name,
     model: provider.defaultModel,
@@ -405,17 +378,13 @@ export function getAvailableProviders() {
   }));
 }
 
-/**
- * Create SSE message with proper format
- */
 export function createSSEMessage(event: SSEEvent): string {
-  // Ensure proper SSE format with event type
   const lines: string[] = [];
   if (event.type) {
     lines.push(`event: ${event.type}`);
   }
   lines.push(`data: ${JSON.stringify(event)}`);
-  lines.push(''); // Empty line to signal end of event
-  lines.push(''); // Extra newline for proper SSE format
+  lines.push('');
+  lines.push('');
   return lines.join('\n');
 }
