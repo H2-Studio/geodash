@@ -48,7 +48,7 @@ export default function Home() {
 
           {/* Stats */}
           <div className="mt-20 bg-zinc-900 rounded-[20px] p-12 animate-fade-in-scale animation-delay-800">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center animate-fade-in-up animation-delay-1000">
                 <div className="text-4xl font-bold text-white">{t('stats.chatgpt')}</div>
                 <div className="text-sm text-zinc-400 mt-1">{t('stats.providers')}</div>
