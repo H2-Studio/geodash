@@ -492,6 +492,7 @@ export function BrandMonitor({
 
       {showPromptsList && company && !analysis && (
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+          {!analyzing && (
           <button
             onClick={() => generateDynamicPrompts(company)}
             disabled={dynamicPromptsLoading}
@@ -500,6 +501,7 @@ export function BrandMonitor({
           >
             <ShuffleIcon className="w-4 h-4" />
           </button>
+          )}
           {dynamicPromptsLoading ? (
             <div className="flex flex-col items-center justify-center py-8">
               <span className="text-gray-500 text-md mb-2">
@@ -546,9 +548,9 @@ export function BrandMonitor({
       )}
 
       {analysis && brandData && (
-        <div className="flex-1 flex justify-center animate-panel-in pt-8">
+        <div className="flex-1 flex-col justify-center animate-panel-in pt-8">
           <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-            <div className="flex gap-6 relative">
+            <div className="flex flex-col sm:flex-row gap-6 relative">
               <ResultsNavigation
                 activeTab={activeResultsTab}
                 onTabChange={(tab) =>

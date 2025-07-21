@@ -304,7 +304,7 @@ export function AnalysisProgressSection({
               </div>
 
               {/* Add Prompt Button */}
-              <div className="flex justify-end mb-4">
+              <div className="flex justify-center sm:justify-end mb-4">
                 <button
                   onClick={onAddPromptClick}
                   disabled={analyzing}

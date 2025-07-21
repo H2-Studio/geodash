@@ -47,7 +47,7 @@ export function CompanyCard({
 }: CompanyCardProps) {
   const [logoError, setLogoError] = React.useState(false);
   const [faviconError, setFaviconError] = React.useState(false);
-  const t = useTranslations('brandMonitor');
+  const t = useTranslations("brandMonitor");
 
   // Validate URLs
   const isValidUrl = (url: string | undefined): boolean => {
@@ -65,9 +65,9 @@ export function CompanyCard({
 
   return (
     <Card className="p-2 bg-card text-card-foreground gap-6 rounded-xl border py-6 shadow-sm border-gray-200 overflow-hidden transition-all hover:shadow-lg">
-      <div className="flex">
+      <div className="flex flex-col sm:flex-row">
         {/* Left side - OG Image */}
-        <div className="relative w-80 h-48 ml-4 overflow-hidden">
+        <div className="relative w-full sm:w-80 h-48 sm:ml-4 mb-4 sm:mb-0 overflow-hidden">
           {validLogoUrl && !logoError ? (
             <div className="absolute inset-0 pr-4 py-4">
               <Image
@@ -104,15 +104,15 @@ export function CompanyCard({
             target="_blank"
             rel="noopener noreferrer"
             className="absolute top-4 right-4 p-2 rounded-lg bg-white/90 backdrop-blur-sm hover:bg-white transition-all shadow-md group"
-            aria-label={t('companyCard.websiteLink')}
+            aria-label={t("companyCard.websiteLink")}
           >
             <ExternalLink className="h-4 w-4 text-gray-600 group-hover:text-gray-900" />
           </a>
         </div>
 
         {/* Right side - Content */}
-        <div className="flex-1 p-8">
-          <div className="flex items-start justify-between mb-4">
+        <div className="flex-1 p-4 sm:p-8 flex flex-col">
+          <div className="flex flex-col sm:flex-row items-start justify-between mb-4 gap-2 sm:gap-0">
             <div>
               <h3 className="text-xl font-semibold text-gray-900">
                 {company.name}
@@ -130,15 +130,26 @@ export function CompanyCard({
             <button
               onClick={onAnalyze}
               disabled={analyzing}
-              className="h-9 rounded-[10px] text-sm font-medium flex items-center transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 bg-[#36322F] text-[#fff] hover:bg-[#4a4542] disabled:bg-[#8c8885] disabled:hover:bg-[#8c8885] [box-shadow:inset_0px_-2.108433723449707px_0px_0px_#171310,_0px_1.2048193216323853px_6.325301647186279px_0px_rgba(58,_33,_8,_58%)] hover:translate-y-[1px] hover:scale-[0.98] hover:[box-shadow:inset_0px_-1px_0px_0px_#171310,_0px_1px_3px_0px_rgba(58,_33,_8,_40%)] active:translate-y-[2px] active:scale-[0.97] active:[box-shadow:inset_0px_1px_1px_0px_#171310,_0px_1px_2px_0px_rgba(58,_33,_8,_30%)] disabled:shadow-none disabled:hover:translate-y-0 disabled:hover:scale-100 px-4 py-1"
+              className="h-9 flex items-center justify-center w-full sm:w-auto mt-2 sm:mt-0 px-4 py-1 rounded-[10px] text-sm font-medium transition-all duration-200
+              bg-[#36322F] text-white
+              hover:bg-[#4a4542]
+              disabled:bg-[#8c8885] disabled:text-white
+              disabled:hover:bg-[#8c8885]
+              [box-shadow:inset_0px_-2.108433723449707px_0px_0px_#171310,_0px_1.2048193216323853px_6.325301647186279px_0px_rgba(58,_33,_8,_58%)]
+              hover:translate-y-[1px] hover:scale-[0.98]
+              hover:[box-shadow:inset_0px_-1px_0px_0px_#171310,_0px_1px_3px_0px_rgba(58,_33,_8,_40%)]
+              active:translate-y-[2px] active:scale-[0.97]
+              active:[box-shadow:inset_0px_1px_1px_0px_#171310,_0px_1px_2px_0px_rgba(58,_33,_8,_30%)]
+              disabled:shadow-none disabled:hover:translate-y-0 disabled:hover:scale-100
+            "
             >
               {analyzing ? (
                 <>
                   <div className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin mr-2" />
-                  {t('companyCard.analyzing')}
+                  {t("companyCard.analyzing")}
                 </>
               ) : (
-                t('companyCard.identify')
+                t("companyCard.identify")
               )}
             </button>
           </div>
@@ -150,7 +161,7 @@ export function CompanyCard({
           {/* Keywords inline */}
           {company.scrapedData?.keywords &&
             company.scrapedData.keywords.length > 0 && (
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-2">
                 {company.scrapedData.keywords
                   .slice(0, 6)
                   .map((keyword, idx) => (
@@ -163,7 +174,7 @@ export function CompanyCard({
                   ))}
                 {company.scrapedData.keywords.length > 6 && (
                   <span className="text-xs text-gray-500">
-                    {t('companyCard.moreKeywords', {
+                    {t("companyCard.moreKeywords", {
                       count: company.scrapedData.keywords.length - 6,
                     })}
                   </span>
@@ -176,14 +187,14 @@ export function CompanyCard({
       {/* Competitors Section */}
       {showCompetitors && identifiedCompetitors.length > 0 && (
         <div className="border-t border-gray-200">
-          <div className="px-8 py-6">
+          <div className="px-4 sm:px-8 py-6">
             <div className="mb-4">
               <div>
                 <h3 className="text-sm font-medium text-gray-900">
-                  {t('companyCard.competitorsTitle')}
+                  {t("companyCard.competitorsTitle")}
                 </h3>
                 <p className="text-sm text-gray-500">
-                  {t('companyCard.competitorsDescription', {
+                  {t("companyCard.competitorsDescription", {
                     brand: company.name,
                     count: identifiedCompetitors.length,
                   })}
@@ -191,11 +202,12 @@ export function CompanyCard({
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            {/* Responsive scrollable competitors */}
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-2">
               {identifiedCompetitors.map((competitor, idx) => (
                 <div
                   key={idx}
-                  className="group relative bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-all opacity-0 animate-fade-up"
+                  className="min-w-[180px] max-w-[220px] sm:min-w-0 sm:max-w-none flex-shrink-0 sm:flex-shrink sm:relative bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-all opacity-0 animate-fade-up"
                   style={{
                     animationDelay: `${idx * 50}ms`,
                     animationFillMode: "forwards",
@@ -245,7 +257,7 @@ export function CompanyCard({
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-gray-400 hover:text-gray-600 transition-colors"
-                            aria-label={t('companyCard.viewCompetitor')}
+                            aria-label={t("companyCard.viewCompetitor")}
                           >
                             <ExternalLink className="w-3 h-3" />
                           </a>
@@ -264,7 +276,7 @@ export function CompanyCard({
                     <button
                       onClick={() => onRemoveCompetitor(idx)}
                       className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-red-50"
-                      aria-label={t('companyCard.removeCompetitor')}
+                      aria-label={t("companyCard.removeCompetitor")}
                     >
                       <Trash2 className="w-3.5 h-3.5 text-red-600" />
                     </button>
@@ -273,34 +285,32 @@ export function CompanyCard({
               ))}
             </div>
 
-            {/* Actions */}
-            <div className="flex items-center gap-4 mt-6 pt-6 border-t">
+            {/* Actions (responsive buttons) */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 mt-6 pt-6 border-t">
               {onAddCompetitor && (
                 <button
                   onClick={onAddCompetitor}
-                  className="h-10 px-4 rounded-[10px] text-sm font-medium flex items-center gap-1 transition-all duration-200 bg-blue-500 text-white
-  hover:bg-blue-600 [box-shadow:inset_0px_-2.108433723449707px_0px_0px_#1d4ed8,_0px_1.2048193216323853px_6.325301647186279px_0px_rgba(37,_99,_235,_58%)]
-  hover:translate-y-[1px] hover:scale-[0.98]
-  hover:[box-shadow:inset_0px_-1px_0px_0px_#1d4ed8,_0px_1px_3px_0px_rgba(37,_99,_235,_40%)]
-  active:translate-y-[2px] active:scale-[0.97]
-  active:[box-shadow:inset_0px_1px_1px_0px_#1d4ed8,_0px_1px_2px_0px_rgba(37,_99,_235,_30%)]
-"
-                  aria-label={t('companyCard.addCompetitor')}
+                  className="h-10 px-4 rounded-[10px] text-sm font-medium flex items-center justify-center gap-1 transition-all duration-200 bg-blue-500 text-white
+                  hover:bg-blue-600 [box-shadow:inset_0px_-2.108433723449707px_0px_0px_#1d4ed8,_0px_1.2048193216323853px_6.325301647186279px_0px_rgba(37,_99,_235,_58%)]
+                  hover:translate-y-[1px] hover:scale-[0.98]
+                  hover:[box-shadow:inset_0px_-1px_0px_0px_#1d4ed8,_0px_1px_3px_0px_rgba(37,_99,_235,_40%)]
+                  active:translate-y-[2px] active:scale-[0.97]
+                  active:[box-shadow:inset_0px_1px_1px_0px_#1d4ed8,_0px_1px_2px_0px_rgba(37,_99,_235,_30%)]
+                  w-full sm:w-auto"
+                  aria-label={t("companyCard.addCompetitor")}
                 >
                   <Plus className="w-4 h-4" />
-                  {t('companyCard.addCompetitor')}
+                  {t("companyCard.addCompetitor")}
                 </button>
               )}
-
-              <div className="flex-1" />
 
               {onContinueToAnalysis && (
                 <button
                   onClick={onContinueToAnalysis}
-                  className="h-10 px-6 rounded-[10px] text-sm font-medium flex items-center transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 bg-[#36322F] text-[#fff] hover:bg-[#4a4542] disabled:bg-[#8c8885] disabled:hover:bg-[#8c8885] [box-shadow:inset_0px_-2.108433723449707px_0px_0px_#171310,_0px_1.2048193216323853px_6.325301647186279px_0px_rgba(58,_33,_8,_58%)] hover:translate-y-[1px] hover:scale-[0.98] hover:[box-shadow:inset_0px_-1px_0px_0px_#171310,_0px_1px_3px_0px_rgba(58,_33,_8,_40%)] active:translate-y-[2px] active:scale-[0.97] active:[box-shadow:inset_0px_1px_1px_0px_#171310,_0px_1px_2px_0px_rgba(58,_33,_8,_30%)] disabled:shadow-none disabled:hover:translate-y-0 disabled:hover:scale-100"
-                  aria-label={t('companyCard.continue')}
+                  className="h-10 px-6 rounded-[10px] text-sm font-medium flex items-center justify-center transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 bg-[#36322F] text-[#fff] hover:bg-[#4a4542] disabled:bg-[#8c8885] disabled:hover:bg-[#8c8885] [box-shadow:inset_0px_-2.108433723449707px_0px_0px_#171310,_0px_1.2048193216323853px_6.325301647186279px_0px_rgba(58,_33,_8,_58%)] hover:translate-y-[1px] hover:scale-[0.98] hover:[box-shadow:inset_0px_-1px_0px_0px_#171310,_0px_1px_3px_0px_rgba(58,_33,_8,_40%)] active:translate-y-[2px] active:scale-[0.97] active:[box-shadow:inset_0px_1px_1px_0px_#171310,_0px_1px_2px_0px_rgba(58,_33,_8,_30%)] disabled:shadow-none disabled:hover:translate-y-0 disabled:hover:scale-100 w-full sm:w-auto"
+                  aria-label={t("companyCard.continue")}
                 >
-                  {t('companyCard.continue')}
+                  {t("companyCard.continue")}
                 </button>
               )}
             </div>
