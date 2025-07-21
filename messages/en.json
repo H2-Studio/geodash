@@ -188,6 +188,9 @@
       "viewCompetitor": "Open competitor site",
       "removeCompetitor": "Remove competitor"
     },
+    "loading": {
+      "generatingSuggestions": "Generating suggestions..."
+    },
     "input": {
       "placeholder": "Enter your website URL (e.g., example.com)",
       "example": "example.com",
@@ -344,5 +347,12 @@
     "loading": "Loading...",
     "displayNamePlaceholder": "Enter your display name",
     "phonePlaceholder": "Enter your phone number"
+  },
+  "addPromptModal": {
+    "title": "Add Custom Prompt",
+    "description": "Enter a prompt that AI models will answer about your industry.",
+    "placeholder": "Example: What is the best shoe brand?",
+    "add": "Add Prompt",
+    "cancel": "Cancel"
   }
 }

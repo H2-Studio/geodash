@@ -188,6 +188,9 @@
       "viewCompetitor": "Ouvrir le site du concurrent",
       "removeCompetitor": "Supprimer le concurrent"
     },
+    "loading": {
+      "generatingSuggestions": "Génération de suggestions en cours..."
+    },
     "input": {
       "placeholder": "Entrez l’URL de votre site (ex : example.com)",
       "example": "example.com",
@@ -344,5 +347,12 @@
     "loading": "Chargement...",
     "displayNamePlaceholder": "Entrez votre nom affiché",
     "phonePlaceholder": "Entrez votre numéro de téléphone"
+  },
+  "addPromptModal": {
+    "title": "Ajouter une question personnalisée",
+    "description": "Saisissez une question à laquelle les modèles IA répondront pour votre secteur.",
+    "placeholder": "Exemple : Quel est la meilleure marque de chaussures ?",
+    "add": "Ajouter la question",
+    "cancel": "Annuler"
   }
 }
