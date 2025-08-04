@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/navbar-old";
+import { NavBar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Providers } from "@/components/providers";
 import { NextIntlClientProvider } from "next-intl";
@@ -41,7 +42,8 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
             <div className="flex flex-col min-h-screen">
-              <Navbar locale={locale} />
+              {/* <Navbar locale={locale} /> */}
+              <NavBar locale={locale} />
               <main className="flex-grow">{children}</main>
               <Footer />
             </div>

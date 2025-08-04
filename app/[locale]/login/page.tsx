@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { signIn } from '@/lib/auth-client';
 import LocalizedLink from '@/components/localized-link';
+import { Logo } from '@/components/Logo';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -73,13 +74,7 @@ function LoginForm() {
         <div className="max-w-md w-full space-y-8">
           <div>
             <div className="lg:hidden mb-8 flex justify-center">
-              <Image
-                src="/firecrawl-logo-with-fire.webp"
-                alt="Firecrawl"
-                width={180}
-                height={37}
-                priority
-              />
+              <Logo/>
             </div>
             <h2 className="text-center text-3xl font-extrabold text-gray-900">
               Sign in to your account

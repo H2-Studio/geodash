@@ -37,27 +37,27 @@ export const AUTUMN_PRODUCTS: AutumnProduct[] = [
   {
     id: 'free',
     name: 'Free',
-    description: 'Get started with basic features',
+    description: 'Test GEO with basic features',
     type: 'service',
     display: {
       name: 'Free',
-      description: 'Perfect for trying out our service',
-      button_text: 'Get Started',
+      description: 'Perfect to get started with GEO',
+      button_text: 'Try for Free',
     },
     properties: {
       is_free: true,
     },
     items: [
       {
-        id: 'free-messages',
+        id: 'free-analyses',
         type: 'unit',
         display: {
-          primary_text: '100 messages',
+          primary_text: '5 analyses',
           secondary_text: 'per month',
         },
         unit: {
           amount: 0,
-          quantity: 100,
+          quantity: 5,
         },
       },
     ],
@@ -65,13 +65,13 @@ export const AUTUMN_PRODUCTS: AutumnProduct[] = [
   {
     id: 'pro',
     name: 'Pro',
-    description: 'For growing teams that need more power',
+    description: 'For small brands or agencies',
     type: 'service',
     display: {
       name: 'Pro',
-      description: 'Unlock full potential',
-      button_text: 'Start Free Trial',
-      recommend_text: 'Most Popular',
+      description: 'More analyses, priority support',
+      button_text: 'Start Pro',
+      recommend_text: 'Best value',
     },
     properties: {
       interval: 'month',
@@ -82,27 +82,25 @@ export const AUTUMN_PRODUCTS: AutumnProduct[] = [
         id: 'pro-price',
         type: 'flat',
         display: {
-          primary_text: '$9.99',
+          primary_text: '$19',
           secondary_text: 'per month',
         },
         flat: {
-          amount: 999, // Amount in cents
+          amount: 1900, // Amount in cents
         },
       },
       {
-        id: 'pro-messages',
+        id: 'pro-analyses',
         type: 'unit',
         display: {
-          primary_text: '10,000 messages',
+          primary_text: '100 analyses',
           secondary_text: 'per month',
         },
         unit: {
           amount: 0,
-          quantity: 10000,
+          quantity: 100,
         },
       },
     ],
   },
 ];
-
-export const AUTUMN_ADDONS: AutumnProduct[] = [];

@@ -18,6 +18,7 @@ import { anthropic } from "@ai-sdk/anthropic";
 import { google } from "@ai-sdk/google";
 import { perplexity } from "@ai-sdk/perplexity";
 import { LanguageModelV1 } from "ai";
+import { deepseek } from "@ai-sdk/deepseek";
 
 export interface ProviderModel {
   id: string;
@@ -60,6 +61,7 @@ export const PROVIDER_ENABLED_CONFIG: Record<string, boolean> = {
   google: false, // Google is disabled
   perplexity: true, // Perplexity is enabled
   xai: true, // Grok is enabled
+  deepseek: false, // DeepSeek is enabled
 };
 
 /**
@@ -256,6 +258,36 @@ export const PROVIDER_CONFIGS: Record<string, ProviderConfig> = {
     isConfigured: () => !!process.env.PERPLEXITY_API_KEY,
   },
 
+  deepseek: {
+    id: "deepseek",
+    name: "DeepSeek",
+    icon: "🐋",
+    envKey: "DEEPSEEK_API_KEY",
+    enabled: PROVIDER_ENABLED_CONFIG.deepseek,
+    models: [
+      {
+        id: "deepseek-chat",
+        name: "DeepSeek",
+        maxTokens: 4096,
+        supportsFunctionCalling: false,
+        supportsStructuredOutput: false,
+        supportsWebSearch: false,
+      },
+    ],
+    defaultModel: "deepseek-chat",
+    capabilities: {
+      webSearch: false,
+      functionCalling: false,
+      structuredOutput: false,
+      streamingResponse: true,
+    },
+    getModel: (modelId?: string) => {
+      if (!process.env.DEEPSEEK_API_KEY) return null;
+      return deepseek(modelId || "deepseek-chat");
+    },
+    isConfigured: () => !!process.env.DEEPSEEK_API_KEY,
+  },
+
   xai: {
     id: 'xai',
     name: 'Xai',
@@ -285,6 +317,7 @@ export const PROVIDER_CONFIGS: Record<string, ProviderConfig> = {
       },
     isConfigured: () => !!process.env.XAI_API_KEY,
   },
+  
 };
 
 /**
@@ -364,7 +397,8 @@ export const PROVIDER_NAME_MAP: Record<string, string> = {
   Anthropic: "anthropic",
   Google: "google",
   Perplexity: "perplexity",
-  Xai: 'xai'
+  Xai: 'xai',
+  DeepSeek: 'deepseek'
   // Add more mappings as needed
 };
 

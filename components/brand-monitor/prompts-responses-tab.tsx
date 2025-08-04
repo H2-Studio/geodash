@@ -35,6 +35,14 @@ const getProviderIcon = (provider: string) => {
           className="w-5 h-5"
         />
       );
+    case "DeepSeek":
+      return (
+        <img
+          src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/light/deepseek.png"
+          alt="DeepSeek"
+          className="w-5 h-5"
+        />
+      );
     case "Google":
       return (
         <div className="w-5 h-5 flex items-center justify-center">
@@ -258,7 +266,7 @@ export function PromptsResponsesTab({
 
                 {/* Provider icons preview - deduplicated and ordered */}
                 <div className="flex items-center gap-2 shrink-0">
-                  {["OpenAI", "Anthropic", "Google", "Perplexity", "Xai"].map(
+                  {["OpenAI", "Anthropic", "Google", "Perplexity", "Xai", "DeepSeek"].map(
                     (providerName) => {
                       const providerResponse = promptResponses.find(
                         (r) => r.provider === providerName,
@@ -313,7 +321,7 @@ export function PromptsResponsesTab({
               <div className="border-t border-gray-100 px-3 py-3">
                 {promptResponses.length > 0 ? (
                   <div className="space-y-4">
-                    {["OpenAI", "Anthropic", "Google", "Perplexity", "Xai"].map(
+                    {["OpenAI", "Anthropic", "Google", "Perplexity", "Xai", "DeepSeek"].map(
                       (providerName) => {
                         const response = promptResponses.find(
                           (r) => r.provider === providerName,

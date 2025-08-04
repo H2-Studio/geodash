@@ -1,11 +1,19 @@
 'use client';
 
 import { useState } from "react";
-import { useTranslations } from 'next-intl';
-import LocalizedLink from "@/components/localized-link";
+// import { useTranslations } from 'next-intl';
+// import LocalizedLink from "@/components/localized-link";
+import { Hero } from "@/components/hero";
+import { Companies } from "@/components/companies";
+import { Features } from "@/components/features";
+import { GridFeatures } from "@/components/grid-features";
+import { Testimonials } from "@/components/testimonials";
+import { Background } from "@/components/background";
+import { Container } from "@/components/container";
+import { CTA } from "@/components/cta";
 
 export default function Home() {
-  const t = useTranslations('home');
+  // const t = useTranslations('home');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
@@ -13,10 +21,24 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white pt-16 pb-24">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="relative">
+      <div className="absolute inset-0 h-full w-full overflow-hidden ">
+        <Background />
+      </div>
+      <Container className="flex min-h-screen flex-col items-center justify-between ">
+        <Hero />
+        <Companies />
+        <Features />
+        <GridFeatures />
+        <Testimonials />
+      </Container>
+      <div className="relative">
+        <div className="absolute inset-0 h-full w-full overflow-hidden">
+          <Background />
+        </div>
+        <CTA />
+      </div>
+        {/* <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl lg:text-7xl font-bold tracking-tight mb-8 animate-fade-in-up">
               <span className="block text-zinc-900">{t('hero.title1')}</span>
@@ -44,10 +66,10 @@ export default function Home() {
             <p className="mt-6 text-sm text-zinc-500 animate-fade-in-up animation-delay-600">
               {t('hero.powered')}
             </p>
-          </div>
+          </div> */}
 
           {/* Stats */}
-          <div className="mt-20 bg-zinc-900 rounded-[20px] p-12 animate-fade-in-scale animation-delay-800">
+          {/*  <div className="mt-20 bg-zinc-900 rounded-[20px] p-12 animate-fade-in-scale animation-delay-800">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center animate-fade-in-up animation-delay-1000">
                 <div className="text-4xl font-bold text-white">{t('stats.chatgpt')}</div>
@@ -67,11 +89,11 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </div> 
+      </section> */} 
 
       {/* Pricing Section */}
-      <section className="py-24 bg-white">
+      {/* <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gray-50 rounded-[30px] p-16">
             <div className="text-center mb-16">
@@ -82,9 +104,9 @@ export default function Home() {
                 {t('pricing.subtitle')}
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"> */}
               {/* Starter */}
-              <div className="bg-white p-8 rounded-[20px] border border-zinc-200 animate-fade-in-up animation-delay-400 hover:scale-105 transition-all duration-200">
+              {/* <div className="bg-white p-8 rounded-[20px] border border-zinc-200 animate-fade-in-up animation-delay-400 hover:scale-105 transition-all duration-200">
                 <h3 className="text-2xl font-bold mb-2">{t('pricing.starter.label')}</h3>
                 <p className="text-zinc-600 mb-6">{t('pricing.starter.desc')}</p>
                 <div className="mb-6">
@@ -117,10 +139,10 @@ export default function Home() {
                 >
                   {t('pricing.starter.cta')}
                 </LocalizedLink>
-              </div>
+              </div> */}
 
               {/* Pro - Featured */}
-              <div className="bg-white p-8 rounded-[20px] border-2 border-blue-500 relative animate-fade-in-up animation-delay-600 hover:scale-105 transition-all duration-200">
+              {/* <div className="bg-white p-8 rounded-[20px] border-2 border-blue-500 relative animate-fade-in-up animation-delay-600 hover:scale-105 transition-all duration-200">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">
                   {t('pricing.pro.popular')}
                 </div>
@@ -156,10 +178,10 @@ export default function Home() {
                 >
                   {t('pricing.pro.cta')}
                 </LocalizedLink>
-              </div>
+              </div> */}
 
               {/* Enterprise */}
-              <div className="bg-white p-8 rounded-[20px] border border-zinc-200 animate-fade-in-up animation-delay-800 hover:scale-105 transition-all duration-200">
+              {/* <div className="bg-white p-8 rounded-[20px] border border-zinc-200 animate-fade-in-up animation-delay-800 hover:scale-105 transition-all duration-200">
                 <h3 className="text-2xl font-bold mb-2">{t('pricing.enterprise.label')}</h3>
                 <p className="text-zinc-600 mb-6">{t('pricing.enterprise.desc')}</p>
                 <div className="mb-6">
@@ -200,10 +222,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section 1 */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-[30px] p-16 text-center">
             <h2 className="text-4xl font-bold text-white mb-6">
@@ -220,10 +242,10 @@ export default function Home() {
             </LocalizedLink>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQs */}
-      <section className="py-24 bg-white">
+      {/* <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-zinc-900 mb-4 animate-fade-in-up">
@@ -267,10 +289,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Final CTA */}
-      <section className="py-24 bg-zinc-900">
+      {/* <section className="py-24 bg-zinc-900">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-white mb-6">
             {t('finalcta.title')}
@@ -293,7 +315,7 @@ export default function Home() {
             </LocalizedLink>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

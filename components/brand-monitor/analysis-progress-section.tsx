@@ -56,6 +56,14 @@ const getProviderIcon = (provider: string) => {
           className="w-5 h-5"
         />
       );
+    case "DeepSeek":
+      return (
+        <img
+          src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/light/deepseek.png"
+          alt="DeepSeek"
+          className="w-5 h-5"
+        />
+      );
     case "Google":
       return (
         <div className="w-5 h-5 flex items-center justify-center">
@@ -79,6 +87,14 @@ const getProviderIcon = (provider: string) => {
           </svg>
         </div>
       );
+      case "DeepSeek":
+        return (
+          <img
+            src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/light/deepseek.png"
+            alt="DeepSeek"
+            className="w-5 h-5"
+          />
+        );
     case "Perplexity":
       return (
         <img

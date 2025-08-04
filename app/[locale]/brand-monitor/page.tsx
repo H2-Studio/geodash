@@ -64,27 +64,6 @@ function BrandMonitorContent({ session }: { session: any }) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Header */}
-      <div className="relative overflow-hidden bg-white border-b">
-        <div className="px-4 sm:px-6 lg:px-8 py-12">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-between">
-              <div className="text-center flex-1">
-                <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-2 animate-fade-in-up">
-                  <span className="block text-zinc-900">{t('hero.title1')}</span>
-                  <span className="block bg-gradient-to-r from-blue-700 to-blue-400 bg-clip-text text-transparent">
-                    {t('hero.title2')}
-                  </span>
-                </h1>
-                <p className="text-lg text-zinc-600 animate-fade-in-up animation-delay-200">
-                  {t('hero.subtitle')}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="flex h-[calc(100vh-12rem)] relative">
         {/* Sidebar Toggle Button - Always visible */}
         <button

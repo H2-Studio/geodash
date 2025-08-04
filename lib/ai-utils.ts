@@ -550,6 +550,12 @@ Return a simple analysis:
                                provider === 'anthropic' ? 'Anthropic' :
                                provider === 'google' ? 'Google' :
                                provider === 'perplexity' ? 'Perplexity' :
+                               provider === 'deepseek' ? 'DeepSeek' :
+                               provider === 'xai' ? 'Xai' :
+                               provider === 'grok' ? 'Grok' :
+                               provider === 'claude' ? 'Claude' :
+                               provider === 'gemini' ? 'Gemini' :
+                               provider === 'ollama' ? 'Ollama' :
                                provider; // fallback to original
     
     // Debug log for Google responses
@@ -965,6 +971,12 @@ function generateMockResponse(
                              provider === 'anthropic' ? 'Anthropic' :
                              provider === 'google' ? 'Google' :
                              provider === 'perplexity' ? 'Perplexity' :
+                             provider === 'deepseek' ? 'DeepSeek' :
+                             provider === 'xai' ? 'Xai' :
+                             provider === 'grok' ? 'Grok' :
+                             provider === 'claude' ? 'Claude' :
+                             provider === 'gemini' ? 'Gemini' :
+                             provider === 'ollama' ? 'Ollama' :
                              provider; // fallback to original
 
   return {

@@ -35,6 +35,14 @@ const getProviderIcon = (provider: string) => {
           className="w-6 h-6"
         />
       );
+      case "DeepSeek":
+        return (
+          <img
+            src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/light/deepseek.png"
+            alt="DeepSeek"
+            className="w-5 h-5"
+          />
+        );
     case "Google":
       return (
         <div className="w-7 h-7 flex items-center justify-center">

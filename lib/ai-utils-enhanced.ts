@@ -183,6 +183,12 @@ Be very thorough in detecting company names - they might appear in different con
                                provider === 'anthropic' ? 'Anthropic' :
                                provider === 'google' ? 'Google' :
                                provider === 'perplexity' ? 'Perplexity' :
+                               provider === 'deepseek' ? 'DeepSeek' :
+                               provider === 'xai' ? 'Xai' :
+                               provider === 'grok' ? 'Grok' :
+                               provider === 'claude' ? 'Claude' :
+                               provider === 'gemini' ? 'Gemini' :
+                               provider === 'ollama' ? 'Ollama' :
                                provider; // fallback to original
 
     return {
@@ -218,6 +224,13 @@ function generateMockResponse(
                              provider === 'anthropic' ? 'Anthropic' :
                              provider === 'google' ? 'Google' :
                              provider === 'perplexity' ? 'Perplexity' :
+                             provider === 'deepseek' ? 'DeepSeek' :
+                             provider === 'xai' ? 'Xai' :
+                             provider === 'grok' ? 'Grok' :
+                             provider === 'claude' ? 'Claude' :
+                             provider === 'gemini' ? 'Gemini' :
+                             provider === 'ollama' ? 'Ollama' :
+                             provider === 'grok' ? 'Grok' :
                              provider; // fallback to original
   
   return {

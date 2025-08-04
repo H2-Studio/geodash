@@ -102,6 +102,10 @@ export function assignUrlToCompetitor(competitorName: string): string | undefine
     'claude': 'anthropic.com',
     'chatgpt': 'openai.com',
     'gemini': 'gemini.google.com',
+    'deepseek': 'deepseek.com',
+    'xai': 'x.ai',
+    'grok': 'grok.com',
+    'ollama': 'ollama.ai',  
     
     // SaaS platforms
     'salesforce': 'salesforce.com',
