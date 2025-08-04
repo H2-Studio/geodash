@@ -1,4 +1,15 @@
-const typography = require('@tailwindcss/typography');
+const flattenColorPalette = require("tailwindcss/lib/util/flattenColorPalette").default;
+const typography = require("@tailwindcss/typography");
+
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+  addBase({
+    ":root": newVars,
+  });
+}
 
 module.exports = {
   content: [
@@ -12,19 +23,18 @@ module.exports = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
         primary: "#020022",
-        muted: "#6c6c6c",
-        "muted-dark": "#cccccc",
+        muted: "var(--neutral-600)",
+        "muted-dark": "var(--neutral-300)",
       },
       animation: {
-        // Scroll horizontal d'un container
-        scroll: "scroll 40s linear infinite",
-        // Marquee horizontal (pas vertical)
-        marquee: "marquee 20s linear infinite",
-        // Fade-in rapide
+        scroll:
+          "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        marquee: "marquee var(--marquee-duration) linear infinite",
         "fade-in": "fade-in 0.5s linear forwards",
       },
       boxShadow: {
@@ -37,22 +47,26 @@ module.exports = {
         aceternity: `0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`,
       },
       keyframes: {
-        // Scroll horizontal "infini"
         scroll: {
-          to: { transform: "translateX(calc(-50% - 0.5rem))" },
+          to: {
+            transform: "translate(calc(-50% - 0.5rem))",
+          },
         },
-        // Marquee horizontal
         marquee: {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-100%)" },
+          "100%": {
+            transform: "translateY(-50%)",
+          },
         },
-        // Fade-in d'opacité
         "fade-in": {
-          from: { opacity: "0" },
-          to: { opacity: "1" },
+          from: {
+            opacity: "0",
+          },
+          to: {
+            opacity: "1",
+          },
         },
       },
     },
   },
-  plugins: [typography],
+  plugins: [typography, addVariablesForColors],
 };

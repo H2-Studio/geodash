@@ -1,37 +1,159 @@
-
-import { Heading } from "./heading";
-import { Subheading } from "./subheading";
+"use client";
+import React from "react";
 import { cn } from "@/lib/utils";
-import { InViewDiv } from "./in-view-div";
-import { useMemo } from "react";
-import { TestimonialColumnContainer } from "./testimonial-column-container";
 import Image from "next/image";
+import Marquee from "react-fast-marquee";
 
-export const Testimonials = () => {
+export function Testimonials() {
   return (
-    <div className="relative z-20 py-10 md:py-40">
-      <Heading as="h2">Loved by people all over the universe</Heading>
-      <Subheading className="text-center max-w-lg mx-auto">
-        GEODASH AI is used by millions of people around the globe.Our APIs have
-        fan bases and people fight for us over twitter.
-      </Subheading>
-      <TestimonialGrid />
+    <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8 pt-20 overflow-hidden h-full ">
+      <div className="pb-20">
+        <h1 className="pt-4 font-bold text-black text-lg md:text-2xl dark:text-white">
+          Used by builders around the world
+        </h1>
+        <p className="text-base mt-4 text-neutral-600 dark:text-neutral-200">
+          Everyone uses our product, except for the people who don&apos;t use
+          it.
+        </p>
+      </div>
+
+      <div className=" relative">
+        <div className="h-full overflow-hidden w-full bg-charcoal">
+          <TestimonialsGrid />
+        </div>
+      </div>
+
+      <div className="absolute bottom-0 inset-x-0 h-40 w-full bg-gradient-to-t from-charcoal to-transparent"></div>
+    </div>
+  );
+}
+
+export const TestimonialsGrid = () => {
+  const first = testimonials.slice(0, 6);
+  const second = testimonials.slice(6, 12);
+
+  return (
+    <div className="relative [mask-image:linear-gradient(to_right,transparent_0%,white_10%,white_90%,transparent_100%)]">
+      <Marquee direction="right" pauseOnHover speed={50}>
+        {first.map((testimonial, index) => (
+          <Card key={`testimonial-${testimonial.src}-${index}`}>
+            <Quote>{testimonial.quote}</Quote>
+            <div className="flex gap-2 items-center mt-8">
+              <Image
+                src={testimonial.src}
+                alt="Manu Arora"
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+              <div className="flex flex-col">
+                <QuoteDescription className="text-neutral-600 dark:text-neutral-300">
+                  {testimonial.name}
+                </QuoteDescription>
+                <QuoteDescription className="text-neutral-400">
+                  {testimonial.designation}
+                </QuoteDescription>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </Marquee>
+      <Marquee className="mt-10" direction="right" pauseOnHover speed={70}>
+        {second.map((testimonial, index) => (
+          <Card key={`testimonial-${testimonial.src}-${index}`}>
+            <Quote>{testimonial.quote}</Quote>
+            <div className="flex gap-2 items-center mt-8">
+              <Image
+                src={testimonial.src}
+                alt="Manu Arora"
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+              <div className="flex flex-col">
+                <QuoteDescription className="text-neutral-300">
+                  {testimonial.name}
+                </QuoteDescription>
+                <QuoteDescription className="text-neutral-400">
+                  {testimonial.designation}
+                </QuoteDescription>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </Marquee>
+    </div>
+  );
+};
+export const Card = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <div
+      className={cn(
+        "p-4 md:p-8 rounded-xl min-h-[230px] h-full max-w-md md:max-w-lg mx-4 bg-gray-50  dark:bg-neutral-900 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] group",
+        className
+      )}
+    >
+      {children}
     </div>
   );
 };
 
+export const Quote = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <h3
+      className={cn(
+        "text-sm md:text-base font-semibold dark:text-white text-black py-2",
+        className
+      )}
+    >
+      {children}
+    </h3>
+  );
+};
+
+export const QuoteDescription = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <p
+      className={cn(
+        "text-xs md:text-sm font-normal dark:text-neutral-400 text-neutral-600 max-w-sm",
+        className
+      )}
+    >
+      {children}
+    </p>
+  );
+};
+
 interface Testimonial {
-  name: string;
-  quote: string;
   src: string;
+  quote: string;
+  name: string;
   designation?: string;
 }
 
-const testimonials = [
+export const testimonials: Testimonial[] = [
   {
     name: "Manu Arora",
     quote:
-      "What a fantastic AI GEODASH AI is, I just love it. It has completely transformed the way I approach problems and develop solutions.",
+      "What a fantastic AI Proactiv AI is, I just love it. It has completely transformed the way I approach problems and develop solutions.",
     src: "https://i.pravatar.cc/150?img=1",
     designation: "Tech Innovator & Entrepreneur",
   },
@@ -126,200 +248,4 @@ const testimonials = [
     src: "https://i.pravatar.cc/150?img=14",
     designation: "Technology Strategist",
   },
-  {
-    name: "Mia Turner",
-    quote:
-      "It's simply revolutionary! The way it integrates with our existing systems and enhances them is nothing short of miraculous.",
-    src: "https://i.pravatar.cc/150?img=15",
-    designation: "Systems Integrator",
-  },
-  {
-    name: "Nathan Hill",
-    quote:
-      "The best investment we've made in years. It's not just a tool; it's a game-changer that has propelled our business forward.",
-    src: "https://i.pravatar.cc/150?img=16",
-    designation: "Investment Analyst",
-  },
-  {
-    name: "Olivia Scott",
-    quote:
-      "It consistently exceeds our expectations. Its adaptability and precision make it indispensable for our daily operations.",
-    src: "https://i.pravatar.cc/150?img=17",
-    designation: "Quality Assurance Manager",
-  },
-  {
-    name: "Peter White",
-    quote:
-      "A seamless integration into our daily tasks. It has enhanced our productivity and allowed us to focus on more strategic initiatives.",
-    src: "https://i.pravatar.cc/150?img=18",
-    designation: "Strategic Planner",
-  },
-  {
-    name: "Quinn Taylor",
-    quote:
-      "It's a game-changer for our business. The insights it provides are invaluable and have driven substantial growth for us.",
-    src: "https://i.pravatar.cc/150?img=19",
-    designation: "Growth Manager",
-  },
-  {
-    name: "Rachel Black",
-    quote:
-      "The support team is as impressive as the technology itself. They ensure we maximize the utility of the AI in our operations.",
-    src: "https://i.pravatar.cc/150?img=20",
-    designation: "Client Support Coordinator",
-  },
-  {
-    name: "Samuel Lee",
-    quote:
-      "It's the future, now. Adopting this AI has put us years ahead of the competition in terms of operational efficiency and innovation.",
-    src: "https://i.pravatar.cc/150?img=21",
-    designation: "Futurist",
-  },
-  {
-    name: "Tina Brooks",
-    quote:
-      "It has completely changed the way we operate. The AI's ability to analyze and optimize our processes is phenomenal.",
-    src: "https://i.pravatar.cc/150?img=22",
-    designation: "Process Analyst",
-  },
 ];
-
-function Testimonial({
-  name,
-  quote,
-  src,
-  designation,
-  className,
-  ...props
-}: Omit<React.ComponentPropsWithoutRef<"figure">, keyof Testimonial> &
-  Testimonial) {
-  let animationDelay = useMemo(() => {
-    let possibleAnimationDelays = [
-      "0s",
-      "0.1s",
-      "0.2s",
-      "0.3s",
-      "0.4s",
-      "0.5s",
-    ];
-    return possibleAnimationDelays[
-      Math.floor(Math.random() * possibleAnimationDelays.length)
-    ];
-  }, []);
-
-  const boxStyle = {};
-  return (
-    <figure
-      className={cn(
-        "animate-fade-in rounded-3xl bg-transparent p-8 opacity-0 shadow-derek dark:bg-neutral-900",
-        className
-      )}
-      style={{
-        animationDelay,
-      }}
-      {...props}
-    >
-      <div className="flex flex-col items-start">
-        <div className="flex gap-2">
-          <Image
-            src={src}
-            width={150}
-            height={150}
-            className="h-10 w-10 rounded-full"
-            alt={name}
-          />
-          <div>
-            <h3 className="text-sm  font-medium text-neutral-500 dark:text-neutral-300">
-              {name}
-            </h3>
-            <p className="text-sm font-normal text-neutral-500 dark:text-neutral-300">
-              {designation}
-            </p>
-          </div>
-        </div>
-        <p className="text-base text-muted mt-4 dark:text-muted-dark">
-          {quote}
-        </p>
-      </div>
-    </figure>
-  );
-}
-
-function TestimonialColumn({
-  testimonials,
-  className,
-  containerClassName,
-  shift = 0,
-}: {
-  testimonials: Testimonial[];
-  className?: string;
-  containerClassName?: (reviewIndex: number) => string;
-  shift?: number;
-}) {
-  return (
-    <TestimonialColumnContainer className={cn(className)} shift={shift}>
-      {testimonials
-        .concat(testimonials)
-        .map((testimonial, testimonialIndex) => (
-          <Testimonial
-            name={testimonial.name}
-            quote={testimonial.quote}
-            src={testimonial.src}
-            designation={testimonial.designation}
-            key={testimonialIndex}
-            className={containerClassName?.(
-              testimonialIndex % testimonials.length
-            )}
-          />
-        ))}
-    </TestimonialColumnContainer>
-  );
-}
-
-function splitArray<T>(array: Array<T>, numParts: number) {
-  let result: Array<Array<T>> = [];
-  for (let i = 0; i < array.length; i++) {
-    let index = i % numParts;
-    if (!result[index]) {
-      result[index] = [];
-    }
-    result[index].push(array[i]);
-  }
-  return result;
-}
-
-function TestimonialGrid() {
-  let columns = splitArray(testimonials, 3);
-  let column1 = columns[0];
-  let column2 = columns[1];
-  let column3 = splitArray(columns[2], 2);
-  return (
-    <InViewDiv className="relative -mx-4 mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3">
-      <TestimonialColumn
-        testimonials={[...column1, ...column3.flat(), ...column2]}
-        containerClassName={(tIndex) =>
-          cn(
-            tIndex >= column1.length + column3[0].length && "md:hidden",
-            tIndex >= column1.length && "lg:hidden"
-          )
-        }
-        shift={10}
-      />
-      <TestimonialColumn
-        testimonials={[...column2, ...column3[1]]}
-        className="hidden md:block"
-        containerClassName={(tIndex) =>
-          tIndex >= column2.length ? "lg:hidden" : ""
-        }
-        shift={15}
-      />
-      <TestimonialColumn
-        testimonials={column3.flat()}
-        className="hidden lg:block"
-        shift={10}
-      />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white dark:from-black" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white dark:from-black" />
-    </InViewDiv>
-  );
-}
