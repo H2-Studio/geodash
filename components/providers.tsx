@@ -4,6 +4,7 @@ import { AutumnProvider } from 'autumn-js/react';
 import { QueryProvider } from '@/lib/providers/query-provider';
 import { AutumnCustomerProvider } from '@/hooks/useAutumnCustomer';
 import { useSession } from '@/lib/auth-client';
+import { ThemeProvider } from '@/context/theme-provider';
 
 function AuthAwareAutumnProvider({ children }: { children: React.ReactNode }) {
   const { data: session } = useSession();
@@ -21,7 +22,9 @@ function AuthAwareAutumnProvider({ children }: { children: React.ReactNode }) {
       skipInitialFetch={false}
     >
       <AutumnCustomerProvider>
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
       </AutumnCustomerProvider>
     </AutumnProvider>
   );
