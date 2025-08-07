@@ -6,6 +6,7 @@ import { NavBar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Providers } from "@/components/providers";
 import { NextIntlClientProvider } from "next-intl";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,15 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="2ef24a64-6808-42a8-9b6a-1e06e623a5ac"
+          data-blockingmode="auto"
+          type="text/javascript"
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
